@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- resultType은 결과로 나오는 값의 데이터타입을 물어보는것 -->
+  <mapper namespace="board">
+  	<select id="boardList" resultType="HashMap"> 
+  		SELECT * from boardview LIMIT 0,10
+  	</select>
+  	
+  	<select id="detail" parameterType="String" resultType="HashMap">
+  		SELECT * FROM board WHERE board_no=#{no }
+  	</select>
+  </mapper>
