@@ -4,10 +4,10 @@
   <!-- resultType은 결과로 나오는 값의 데이터타입을 물어보는것 -->
   <mapper namespace="member">
   	<select id="memberList" resultType="MemberDTO"> 
-  		SELECT * from member
+  		SELECT mno,mname,mgrade,mdate, mid FROM member
   	</select>
   	
   	<select id="memberList2" resultType="Map">
-  		SELECT * FROM member
+  		SELECT mno,mname,mgrade,mdate, mid FROM member
   	</select>
   </mapper>

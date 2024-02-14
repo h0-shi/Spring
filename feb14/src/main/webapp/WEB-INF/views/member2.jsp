@@ -49,11 +49,7 @@ tbody tr:hover{
 					<td class="w1">${row.mgrade }</td>
 					<td class="w2">${row.mid }</td>
 					<td class="w2">${row.mname }</td>
-					<td class="w3"> 
-					<fmt:parseDate value="${row.mdate }" pattern="yyyy-MM-dd'T'HH:mm:ss" var="pDate" type="both"/>
-	    	        <fmt:formatDate value="${pDate }" pattern="yyyy-MM-dd HH:mm:ss" var="newDate"/>
-    	    	     ${newDate }
-					</td>
+					<td class="w3">${row.mdate }</td>
 				</tr>
 			</c:forEach>
 		</tbody>

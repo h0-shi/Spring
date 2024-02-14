@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MemberController {
@@ -27,11 +29,23 @@ public class MemberController {
 	}
 	
 	@GetMapping("/member2")
-	public String member2(Model model) {
+	public ModelAndView /*String*/ member2(/*Model model*/) {
 		List<Map<String, Object>> lists = memberService.memberList2();
-		model.addAttribute("list", lists);
+		
+		ModelAndView mv = new ModelAndView("member2");
+		mv.addObject("list", lists);
+		
+		//model.addAttribute("list", lists);
 		System.out.println("컨트롤러2");
-		return "member";
+		
+		/*return "member";*/
+		return mv;
+	}
+	
+	@GetMapping("/member3")
+	public @ResponseBody MemberDTO member3() {
+		List<MemberDTO> lists = memberService.memberList();
+		return lists.get(0);
 	}
 	
 }
