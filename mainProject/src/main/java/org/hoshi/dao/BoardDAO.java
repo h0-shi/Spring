@@ -17,7 +17,7 @@ public class BoardDAO {
 		return sqlSession.selectList("board.boardList");
 	}
 
-	public BoardDTO detail(String no) {
+	public BoardDTO detail(int no) {
 		return sqlSession.selectOne("board.detail", no);
 	}
 }

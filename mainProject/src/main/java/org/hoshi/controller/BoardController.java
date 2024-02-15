@@ -4,6 +4,7 @@ package org.hoshi.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.hoshi.service.BoardService;
+import org.hoshi.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,13 @@ public class BoardController {
 
 	@Autowired
 	private BoardService boardService;
+	@Autowired
+	private Util util;
+	
+	@GetMapping("/index")
+	public String index() {
+		return "index";
+	}
 	
 	@GetMapping("/board")
 	public String board(Model model) {
@@ -23,9 +31,13 @@ public class BoardController {
 	
 	@GetMapping("/detail")
 	public String detail(HttpServletRequest request, Model model) {
-		String no = request.getParameter("no");
+		int no = util.str2Int(request.getParameter("no"));
 		model.addAttribute("detail", boardService.detail(no));
-		return "detail";
+		if(no!=0) {
+			return "detail";
+		} else {
+			return "error/error";
+		}
 	}
 	
 }
