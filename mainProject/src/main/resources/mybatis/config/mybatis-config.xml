@@ -6,5 +6,6 @@
   <configuration>
   	<typeAliases>
   		<typeAlias type="org.hoshi.dto.BoardDTO" alias="boardDTO"/>
+  		<typeAlias type="org.hoshi.dto.WriteDTO" alias="writeDTO"/>
   	</typeAliases>
   </configuration>

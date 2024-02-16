@@ -36,6 +36,23 @@
 	<!-- Core theme CSS (includes Bootstrap)-->
 	<link href="css/styles.css" rel="stylesheet" />
 	<link href="css/board.css" rel="stylesheet" />
+<script type="text/javascript">
+	function writeCheck(){
+		let title = document.querySelector("#title");
+		let content = document.querySelector("#content");
+		if(title.value.length < 4){
+			alert("제목 이상");
+			title.focus();
+			return false;
+		}
+		if(content.value.length < 10){
+			alert("컨텐츠 이상");
+			content.focus();
+			return false;
+		}
+			return false;
+	}
+</script>
 </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -71,9 +88,30 @@
 							</c:forEach>
 						</tbody>
 					</table>
+					<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#write">글쓰기</button>
                 </div>
             </div>
-        </section>        
+        </section>      
+		<!-- 글쓰기 모달 만들기 -->
+		<div class="modal" id="write">
+			<div class="modal-dialog modal-xl">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3 class="modal-title">글쓰기 창 입니다.</h3>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					</div>
+					<div class="modal-body">
+						<div class="">
+							<form action="./write" method="post" onsubmit="return writeCheck()" name="frm">
+								<input type="text" id="title" name="title" class="form-control mb-2" placeholder="제목" required="required">
+								<textarea name="content" id="content" class="form-control mb-2 vh-500" placeholder="내용" required="required"></textarea>
+								<button type="submit" class="btn btn-info" style="width:100%;">글쓰기</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>        
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.hoshi.dto.BoardDTO;
+import org.hoshi.dto.WriteDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -19,5 +20,9 @@ public class BoardDAO {
 
 	public BoardDTO detail(int no) {
 		return sqlSession.selectOne("board.detail", no);
+	}
+
+	public int write(WriteDTO dto) {
+		return sqlSession.insert("board.write",dto);
 	}
 }

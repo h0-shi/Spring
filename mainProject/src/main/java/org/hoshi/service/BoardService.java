@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.hoshi.dao.BoardDAO;
 import org.hoshi.dto.BoardDTO;
+import org.hoshi.dto.WriteDTO;
+import org.hoshi.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,8 @@ public class BoardService {
 	
 	@Autowired
 	private BoardDAO boardDAO;
+	@Autowired
+	private Util util;
 	
 	public List<BoardDTO> boardList(){
 		return boardDAO.boardList();
@@ -19,6 +23,12 @@ public class BoardService {
 
 	public BoardDTO detail(int no) {
 		return boardDAO.detail(no);
+	}
+
+	public int write(WriteDTO dto) {
+		dto.setMid("hoshi");
+		return boardDAO.write(dto);
+		
 	}
 
 }
