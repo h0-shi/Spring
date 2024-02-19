@@ -1,3 +1,4 @@
 build/
 db-Context.xml
 /.metadata/
+mainProject/src/main/webapp/resources/img

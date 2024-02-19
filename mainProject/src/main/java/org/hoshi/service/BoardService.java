@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hoshi.dao.BoardDAO;
 import org.hoshi.dto.BoardDTO;
+import org.hoshi.dto.CommentDTO;
 import org.hoshi.dto.WriteDTO;
 import org.hoshi.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,15 @@ public class BoardService {
 		dto.setMid("hoshi");
 		return boardDAO.write(dto);
 		
+	}
+
+	public int commentWrite(CommentDTO comment) {
+		comment.setMid("hoshi");
+		return boardDAO.commentwrite(comment);
+	}
+
+	public List<CommentDTO> commentsList(int no) {
+		return boardDAO.commentList(no);
 	}
 
 }

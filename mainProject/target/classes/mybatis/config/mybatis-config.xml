@@ -7,5 +7,6 @@
   	<typeAliases>
   		<typeAlias type="org.hoshi.dto.BoardDTO" alias="boardDTO"/>
   		<typeAlias type="org.hoshi.dto.WriteDTO" alias="writeDTO"/>
+  		<typeAlias type="org.hoshi.dto.CommentDTO" alias="commentDTO"/>
   	</typeAliases>
   </configuration>

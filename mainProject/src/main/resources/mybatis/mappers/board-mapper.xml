@@ -4,12 +4,23 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="board">
+  		 <resultMap type="commentDTO" id="commentDTOmap">
+  			<result column="cno" property="no"/>
+  			<result column="board_no" property="board_no"/>
+  			<result column="ccomment" property="comment"/>
+  			<result column="cdate" property="cdate"/>
+  			<result column="clike" property="clike"/>
+  			<result column="mid" property="mid"/>
+  			<result column="mname" property="mname"/>
+  			<result column="cip" property="cip"/>
+  		</resultMap>
+  
 	  <select id="boardList" resultType="boardDTO">
 	  	SELECT board_no, board_title, board_write, board_date, board_count, comment FROM boardview LIMIT 0,10
 	  </select>
 	  
 	  <select id="detail" resultType="boardDTO" parameterType="Integer">
-	  	SELECT b.board_no, b.board_title, b.board_content, b.mno, b.board_date, b.board_ip, b.board_del, m.mname as board_write
+	  	SELECT b.board_no, b.board_title, b.board_content, b.mno, b.board_date, b.board_ip, b.board_del, m.mname as board_write, (SELECT COUNT(*) FROM comment c WHERE c.board_no = b.board_no) AS comment
 	  	FROM board b JOIN member m ON b.mno=m.mno WHERE b.board_no = #{no } AND board_del='1'
 	  </select>
 	  
@@ -20,4 +31,12 @@
 	  	SELECT LAST_INSERT_ID()
 	  	</selectKey> 
 	  </insert>
+	  
+	  <insert id="commentWrite" parameterType="commentDTO">
+	  	INSERT INTO comment (board_no, ccomment, mno) VALUES (#{no }, #{comment}, (SELECT mno FROM member WHERE mid = #{mid }))
+	  </insert>
+	  
+	  <select id="commentsList" resultMap="commentDTOmap" parameterType ="Integer">
+	  	SELECT cno, ccomment, cdate, clike, mid, mname, cip FROM commentview WHERE board_no = #{no } ORDER BY cdate ASC
+	  </select>
   </mapper>
