@@ -42,6 +42,7 @@
 <link href="css/styles.css" rel="stylesheet" />
 <link href="css/board.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 function deletePost(){
    Swal.fire({
@@ -55,18 +56,43 @@ function deletePost(){
         cancelButtonText: "취소"
       }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire({
-            title: "삭제완료!",
-            text: "글이 삭제되었습니다.",
-            icon: "success",
-            button: {
-                text: "Hey ho!",
-              },
-          });
-        }
+         //java에게 삭제하라고 명령내리겠습니다.
+         //가상 form = post
+         let vform = $('<form></form>');
+         vform.attr('name', 'vform');
+         vform.attr('method', 'post');
+         vform.attr('action', './postDel');
+         vform.append($('<input/>', {type:'hidden', name:'no', value:${detail.board_no } }));
+         vform.appendTo('body');
+         vform.submit();
+         //Swal.fire("삭제했습니다.","", "success");
+        }//end if
       });
-   
 }
+
+$(function(){
+	$("#commentBtn").click(function(){
+		let comment = $(this).parents(".btnArea").siblings(".cArea").children(".commentArea").val();
+		if(comment.length <1){
+			alert("댓글을 입력해주세요");
+		} else if(comment.length > 300) {
+			alert("300자 이내로 입력 가능합니다");
+		} else {
+			$("#commentForm").submit();
+		}
+	});
+	
+	$(".commentArea").keyup(function(){
+		let comment = $(this).val().length;
+		let lengBtn = $(this).parents(".cArea").siblings(".btnArea").children().children();
+		lengBtn.text(comment+"/300");
+		if(comment > 300){
+			lengBtn.css("color","red");
+		} else {
+			lengBtn.css("color","white");
+		}
+	});
+});
 </script>
 <style type="text/css">
 .writeBox{
@@ -106,7 +132,7 @@ function deletePost(){
 	float: left;
 	text-align: right;
 }
-.like, .ip{
+.date, .ip{
 	font-size: smaller;
 }
 .cText{
@@ -158,6 +184,9 @@ function deletePost(){
 	font-weight: 400;
 	font-style: normal;
 }
+.leng{
+	font-size: x-small;
+}
 </style>
 </head>
 <body id="page-top">
@@ -194,21 +223,23 @@ function deletePost(){
 					<img alt="user" src="./img/user.png">
 				</div>
 				<div class="id">${c.mid }</div>
-				<div class="date">${c.cdate} </div>
-				<div class="ip">${c.cip }</div>
 				<div class="like">👍${c.clike }</div>
+				<div class="ip">${c.cip }</div>
+				<div class="date">${c.cdate} </div>
 				<div class="cText">${c.comment }</div>
 			</div>
 		</c:forEach>
 		
 		<div class="writeBox" id="writeBox">
-			<form action="./commentWrite" method="post">
+			<form action="./commentWrite" method="post" id="commentForm">
 				<input type="hidden" name="no" value="${detail.board_no }" >
-				<div>
-				<textarea class="commentArea" id="commentArea" placeholder="예쁘게 써주시요" name="comment"></textarea>
+				<div class="cArea">
+					<textarea class="commentArea" id="commentArea" placeholder="예쁘게 써주시요" name="comment"></textarea>
 				</div>
-				<div>
-				<button class="btn btn-info btns" id="commentBtn" >등록</button>				
+				<div class="btnArea">
+					<button type="button" class="btn btn-info btns" id="commentBtn">등록
+					<div class="leng">0/300</div>
+					</button>				
 				</div>
 				<!-- <button class="commentButton">등록</button> -->
 			</form>

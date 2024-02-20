@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
     <head>
@@ -7,9 +7,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Agency - Start Bootstrap Theme</title>
+        <title>Trinity Company - Home</title>
         <!-- Favicon-->
-     	<link rel="apple-touch-icon" sizes="57x57" href="assets/apple-icon-57x57.png">
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="57x57" href="assets/apple-icon-57x57.png">
 		<link rel="apple-touch-icon" sizes="60x60" href="assets/apple-icon-60x60.png">
 		<link rel="apple-touch-icon" sizes="72x72" href="assets/apple-icon-72x72.png">
 		<link rel="apple-touch-icon" sizes="76x76" href="assets/apple-icon-76x76.png">
@@ -22,7 +24,7 @@
 		<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
 		<link rel="icon" type="image/png" sizes="96x96" href="assets/favicon-96x96.png">
 		<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
-		<link rel="manifest" href="/manifest.json">
+		<link rel="manifest" href="assets/manifest.json">
 		<meta name="msapplication-TileColor" content="#ffffff">
 		<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 		<meta name="theme-color" content="#ffffff">
@@ -36,21 +38,21 @@
     </head>
     <body id="page-top">
         <!-- Navigation-->
-		<c:import url="menu.jsp"/>
+        <c:import url="menu.jsp"/>
         <!-- Masthead-->
         <header class="masthead">
             <div class="container">
-                <div class="masthead-subheading">Welcome To Our Studio!</div>
-                <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
-                <a class="btn btn-primary btn-xl text-uppercase" href="#services">Tell Me More</a>
+                <div class="masthead-subheading">환영합니다, 트리니티 코인에 오신것을!</div>
+                <div class="masthead-heading text-uppercase">당신의 투자에 영광이 있으라</div>
+                <a class="btn btn-primary btn-xl text-uppercase" href="#services">투자정보보기</a>
             </div>
         </header>
         <!-- Services-->
         <section class="page-section" id="services">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Services</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h2 class="section-heading text-uppercase">트리니티 코인이란</h2>
+                    <h3 class="section-subheading text-muted">작은 노력, 큰 수익! 굼뜬 당신을 위한 코인</h3>
                 </div>
                 <div class="row text-center">
                     <div class="col-md-4">
@@ -58,24 +60,24 @@
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
                             <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
                         </span>
-                        <h4 class="my-3">E-Commerce</h4>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                        <h4 class="my-3">쉬운 구매</h4>
+                        <p class="text-muted">지금 당장 1원으로 10코인을 살 수 있습니다. 이래도 투자 안 할 것인가?</p>
                     </div>
                     <div class="col-md-4">
                         <span class="fa-stack fa-4x">
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
                             <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
                         </span>
-                        <h4 class="my-3">Responsive Design</h4>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                        <h4 class="my-3">언제 어디서던 확인</h4>
+                        <p class="text-muted">내 코인이 어디에 있나? 내 코인이 어디에 쓰이고 있나? 내 코인을 누구에게 양도했나 다 확인 가능한 트리니티 코인</p>
                     </div>
                     <div class="col-md-4">
                         <span class="fa-stack fa-4x">
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
                             <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
                         </span>
-                        <h4 class="my-3">Web Security</h4>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                        <h4 class="my-3">밀어서 잠금</h4>
+                        <p class="text-muted">코인을 현금화 하고 싶다면 자금을 잠금하세요.</p>
                     </div>
                 </div>
             </div>
@@ -84,8 +86,8 @@
         <section class="page-section bg-light" id="portfolio">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Portfolio</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h2 class="section-heading text-uppercase">코인으로 무엇을 할 수 있는가?</h2>
+                    <h3 class="section-subheading text-muted">제한적인 가능성을 당신에게.</h3>
                 </div>
                 <div class="row">
                     <div class="col-lg-4 col-sm-6 mb-4">
@@ -98,8 +100,8 @@
                                 <img class="img-fluid" src="assets/img/portfolio/1.jpg" alt="..." />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Threads</div>
-                                <div class="portfolio-caption-subheading text-muted">Illustration</div>
+                                <div class="portfolio-caption-heading">전자팔지</div>
+                                <div class="portfolio-caption-subheading text-muted">언제나 내 곁에</div>
                             </div>
                         </div>
                     </div>
@@ -113,8 +115,8 @@
                                 <img class="img-fluid" src="assets/img/portfolio/2.jpg" alt="..." />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Explore</div>
-                                <div class="portfolio-caption-subheading text-muted">Graphic Design</div>
+                                <div class="portfolio-caption-heading">도망가자</div>
+                                <div class="portfolio-caption-subheading text-muted">중앙집중식 은행에서 탈출하자</div>
                             </div>
                         </div>
                     </div>
@@ -128,8 +130,8 @@
                                 <img class="img-fluid" src="assets/img/portfolio/3.jpg" alt="..." />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Finish</div>
-                                <div class="portfolio-caption-subheading text-muted">Identity</div>
+                                <div class="portfolio-caption-heading">마침내 테슬라</div>
+                                <div class="portfolio-caption-subheading text-muted">테슬라코어를 만져볼 수 있는 기회</div>
                             </div>
                         </div>
                     </div>
@@ -143,8 +145,8 @@
                                 <img class="img-fluid" src="assets/img/portfolio/4.jpg" alt="..." />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Lines</div>
-                                <div class="portfolio-caption-subheading text-muted">Branding</div>
+                                <div class="portfolio-caption-heading">2500코인으로 콜라를</div>
+                                <div class="portfolio-caption-subheading text-muted">먼지 모아 먼지</div>
                             </div>
                         </div>
                     </div>
@@ -158,8 +160,8 @@
                                 <img class="img-fluid" src="assets/img/portfolio/5.jpg" alt="..." />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Southwest</div>
-                                <div class="portfolio-caption-subheading text-muted">Website Design</div>
+                                <div class="portfolio-caption-heading">판매</div>
+                                <div class="portfolio-caption-subheading text-muted">100만 코인으로 노트북을 구매</div>
                             </div>
                         </div>
                     </div>
@@ -173,8 +175,8 @@
                                 <img class="img-fluid" src="assets/img/portfolio/6.jpg" alt="..." />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Window</div>
-                                <div class="portfolio-caption-subheading text-muted">Photography</div>
+                                <div class="portfolio-caption-heading">명품을</div>
+                                <div class="portfolio-caption-subheading text-muted">5천만코인으로 명품가방을 사자</div>
                             </div>
                         </div>
                     </div>
@@ -185,58 +187,58 @@
         <section class="page-section" id="about">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">About</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h2 class="section-heading text-uppercase">관대하여</h2>
+                    <h3 class="section-subheading text-muted">트리니티 코인에 대해서 알아보자</h3>
                 </div>
                 <ul class="timeline">
                     <li>
                         <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/1.jpg" alt="..." /></div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
-                                <h4>2009-2011</h4>
-                                <h4 class="subheading">Our Humble Beginnings</h4>
+                                <h4>2002-2010</h4>
+                                <h4 class="subheading">회사의 시작은 미약하나</h4>
                             </div>
-                            <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
+                            <div class="timeline-body"><p class="text-muted">자본금 2천원으로 코인의 세계를 만들다.</p>옆을 보라. 얼마나 보잘것 없는가. 이런 곳에서 이런 코인이 탄생하다. 너는 믿을 수 있다, 너를.</div>
                         </div>
                     </li>
                     <li class="timeline-inverted">
                         <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/2.jpg" alt="..." /></div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
-                                <h4>March 2011</h4>
-                                <h4 class="subheading">An Agency is Born</h4>
+                                <h4>만약에 2011</h4>
+                                <h4 class="subheading">드디어 우리 사이트가 시작되다. 상장은 아직이다.</h4>
                             </div>
-                            <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
+                            <div class="timeline-body"><p class="text-muted">잠을 자면서, 밥을 먹으면서, 길을 가면서 트리니티 코인을 생각하다.</p>혁신적이지 않다, AND 그래서 다시 시작했다, 너를 꼬시기 위해서.</div>
                         </div>
                     </li>
                     <li>
                         <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/3.jpg" alt="..." /></div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
-                                <h4>December 2015</h4>
-                                <h4 class="subheading">Transition to Full Service</h4>
+                                <h4>2016년 1월 32일</h4>
+                                <h4 class="subheading">Trinity 코인 회의를 시작하다, 끝나지 않는.</h4>
                             </div>
-                            <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
+                            <div class="timeline-body"><p class="text-muted">회의를 하고 회의를 하다. 당신의 돈을 우리가 가져가기 위해서 얼마나 많은 회의를 하였는가. 당신은 알 필요가 없다.</p></div>
                         </div>
                     </li>
                     <li class="timeline-inverted">
                         <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/4.jpg" alt="..." /></div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
-                                <h4>July 2020</h4>
-                                <h4 class="subheading">Phase Two Expansion</h4>
+                                <h4>6월 2020년</h4>
+                                <h4 class="subheading">당신의 돈이 우리의 휴가를 주다</h4>
                             </div>
-                            <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
+                            <div class="timeline-body"><p class="text-muted">첫 회사 그룹 해외여행을 가다.</p>당신의 돈으로 당신이 원하는 여행지를 우리가 갈 수 있다. 첫 여행지로 한국을 선택했다. 한국은 기회의 땅이기 때문이다. 우리는 거기서 트리니티 코인을 판매할 것이다. 당신의 머니는 우리의 돈이다.</div>
                         </div>
                     </li>
                     <li class="timeline-inverted">
                         <div class="timeline-image">
                             <h4>
-                                Be Part
+                                당신의 돈으로
                                 <br />
-                                Of Our
+                                우리의 코인을
                                 <br />
-                                Story!
+                                Sorry.
                             </h4>
                         </div>
                     </li>
@@ -247,74 +249,56 @@
         <section class="page-section bg-light" id="team">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h2 class="section-heading text-uppercase">당신의 돈으로 고용한 우리 직원</h2>
+                    <h3 class="section-subheading text-muted">인당 주급 100 트리니티 코인을 받는다.</h3>
                 </div>
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="team-member">
                             <img class="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="..." />
-                            <h4>Parveen Anand</h4>
-                            <p class="text-muted">Lead Designer</p>
+                            <h4>파브르 엔쏘늬</h4>
+                            <p class="text-muted">코인 디자이너</p>
                             <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile"><i class="fab fa-twitter"></i></a>
                             <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="team-member">
                             <img class="mx-auto rounded-circle" src="assets/img/team/2.jpg" alt="..." />
-                            <h4>Diana Petersen</h4>
-                            <p class="text-muted">Lead Marketer</p>
+                            <h4>다니엘 헤리슨</h4>
+                            <p class="text-muted">미안하다 남자다</p>
                             <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Twitter Profile"><i class="fab fa-twitter"></i></a>
                             <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="team-member">
                             <img class="mx-auto rounded-circle" src="assets/img/team/3.jpg" alt="..." />
-                            <h4>Larry Parker</h4>
-                            <p class="text-muted">Lead Developer</p>
+                            <h4>해리 피터슨 파커 팬</h4>
+                            <p class="text-muted">누가봐도 개발자다</p>
                             <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i class="fab fa-twitter"></i></a>
                             <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i class="fab fa-github-in"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i class="fab fa-instagram-in"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i class="fab fa-kakaotalk-in"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i class="fab fa-wink-in"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p></div>
+                    <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">우리는 원한다 아시아 한국 직원을. 당신이 지원할 수 있다. 어서 와라.</p></div>
                 </div>
             </div>
         </section>
         <section class="page-section" id="halp">
-        	<h1>나는 아네 내가 살아가는 이유</h1>
+         	<h1>도와줘유</h1>
         </section>
-        <!-- Clients-->
-        <div class="py-5">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-3 col-sm-6 my-3">
-                        <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="assets/img/logos/microsoft.svg" alt="..." aria-label="Microsoft Logo" /></a>
-                    </div>
-                    <div class="col-md-3 col-sm-6 my-3">
-                        <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="assets/img/logos/google.svg" alt="..." aria-label="Google Logo" /></a>
-                    </div>
-                    <div class="col-md-3 col-sm-6 my-3">
-                        <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="assets/img/logos/facebook.svg" alt="..." aria-label="Facebook Logo" /></a>
-                    </div>
-                    <div class="col-md-3 col-sm-6 my-3">
-                        <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="assets/img/logos/ibm.svg" alt="..." aria-label="IBM Logo" /></a>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- Contact-->
         <section class="page-section" id="contact">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Contact Us</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h2 class="section-heading text-uppercase">기타 정보</h2>
+                    <h3 class="section-subheading text-muted">우리는 기타를 치지 못한다. 음악을 못 한다. 사장이 하지 말라고 한다. 악덕 사장이다. 새로운 사장을 원한다.</h3>
                 </div>
                 <!-- * * * * * * * * * * * * * * *-->
                 <!-- * * SB Forms Contact Form * *-->
@@ -369,7 +353,7 @@
                     <!-- an error submitting the form-->
                     <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
                     <!-- Submit Button-->
-                    <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase disabled" id="submitButton" type="submit">Send Message</button></div>
+                    <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase disabled" id="submitButton" type="submit">사장 지원하기</button></div>
                 </form>
             </div>
         </section>
@@ -377,12 +361,8 @@
         <footer class="footer py-4">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-start">Copyright &copy; Your Website 2023</div>
-                    <div class="col-lg-4 my-3 my-lg-0">
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
+                    <div class="col-lg-4 text-lg-start">Copyright &copy; My site 2025</div>
+                    
                     <div class="col-lg-4 text-lg-end">
                         <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
                         <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
@@ -401,23 +381,23 @@
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Project details-->
-                                    <h2 class="text-uppercase">Project Name</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <h2 class="text-uppercase">전자 팔찌</h2>
+                                    <p class="item-intro text-muted">이 코인에 투자하면 얻을 수 있다. 무료이다. 정부가 발급해준다.</p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/1.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <p>당신의 돈이 우리에게 희망을 준다. 우리는 당신에게 줄 것이 없다. 이 팔찌는 정부에서 준다. 당신을 강금한다. 즐겨라.</p>
                                     <ul class="list-inline">
                                         <li>
                                             <strong>Client:</strong>
-                                            Threads
+                                            쓰레드
                                         </li>
                                         <li>
                                             <strong>Category:</strong>
-                                            Illustration
+                                            전자팔지 / 교도소용
                                         </li>
                                     </ul>
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                         <i class="fas fa-xmark me-1"></i>
-                                        Close Project
+                                        종료 프로젝트
                                     </button>
                                 </div>
                             </div>
@@ -436,23 +416,23 @@
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Project details-->
-                                    <h2 class="text-uppercase">Project Name</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <h2 class="text-uppercase">달려라. 도망가라.</h2>
+                                    <p class="item-intro text-muted">걸리기전에 도망가자. 걸리면 스프도 없다.</p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/2.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <p>당신의 돈은 우리 직원들의 점심이다. 우리는 다 먹었다. 더이상 배가 고프다. 돈을 달라. 그래서 도망간다.</p>
                                     <ul class="list-inline">
                                         <li>
                                             <strong>Client:</strong>
-                                            Explore
+                                            You
                                         </li>
                                         <li>
                                             <strong>Category:</strong>
-                                            Graphic Design
+                                            탈주각
                                         </li>
                                     </ul>
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                         <i class="fas fa-xmark me-1"></i>
-                                        Close Project
+                                        닫다 프로젝트
                                     </button>
                                 </div>
                             </div>
@@ -471,23 +451,23 @@
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Project details-->
-                                    <h2 class="text-uppercase">Project Name</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <h2 class="text-uppercase">테슬라 사고싶다.</h2>
+                                    <p class="item-intro text-muted">우리 코인으로 살 수 있는 것. none.</p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/3.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <p>내가 사고 싶어서 올려본다. 사줘라 당신의 돈으로.</p>
                                     <ul class="list-inline">
                                         <li>
                                             <strong>Client:</strong>
-                                            Finish
+                                            no 의미
                                         </li>
                                         <li>
                                             <strong>Category:</strong>
-                                            Identity
+                                            just 올려봄.
                                         </li>
                                     </ul>
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                         <i class="fas fa-xmark me-1"></i>
-                                        Close Project
+                                        닫아줘라 프로젝트
                                     </button>
                                 </div>
                             </div>
@@ -506,18 +486,18 @@
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Project details-->
-                                    <h2 class="text-uppercase">Project Name</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <h2 class="text-uppercase">코카콜라</h2>
+                                    <p class="item-intro text-muted">코카콜라 맛있다. 맛있다. 맛있으면...</p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/4.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <p>2500코인으면 코카콜라 한 병을 구매할 수 없다. 얼마나 아름다운가. 사지마라. 쫒겨난다.</p>
                                     <ul class="list-inline">
                                         <li>
                                             <strong>Client:</strong>
-                                            Lines
+                                            코카인
                                         </li>
                                         <li>
                                             <strong>Category:</strong>
-                                            Branding
+                                            음식 / 밥을 달라.
                                         </li>
                                     </ul>
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
@@ -541,18 +521,18 @@
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Project details-->
-                                    <h2 class="text-uppercase">Project Name</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <h2 class="text-uppercase">판매</h2>
+                                    <p class="item-intro text-muted">10만 X 10만 코인으로 구매하자.</p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/5.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <p>노트북 어느 노트북이 좋을까요?</p>
                                     <ul class="list-inline">
                                         <li>
                                             <strong>Client:</strong>
-                                            Southwest
+                                            IT
                                         </li>
                                         <li>
                                             <strong>Category:</strong>
-                                            Website Design
+                                            어떻게 얼마?
                                         </li>
                                     </ul>
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
@@ -576,23 +556,23 @@
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Project details-->
-                                    <h2 class="text-uppercase">Project Name</h2>
-                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <h2 class="text-uppercase">명품 구매가 가능한 코인이 아니다</h2>
+                                    <p class="item-intro text-muted">5천만 코인으로 구매 할 수 있는가?</p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/6.jpg" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <p>우리 코인으로 명품을 구매할 수 있는지는 개발자에게 물어봐야 한다. 개발자가 퇴사각을 잡고 있다. 각도기를 빼았았다. 손으로 각을 보고 있다. 손가락을 분.... 아 아니다. 코딩을 해야해서 손가락은 그냥 붙여준다.</p>
                                     <ul class="list-inline">
                                         <li>
                                             <strong>Client:</strong>
-                                            Window
+                                            어딜 도망 가
                                         </li>
                                         <li>
                                             <strong>Category:</strong>
-                                            Photography
+                                            너 강금.
                                         </li>
                                     </ul>
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                         <i class="fas fa-xmark me-1"></i>
-                                        Close Project
+                                        닫는다 프로젝트
                                     </button>
                                 </div>
                             </div>

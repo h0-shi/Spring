@@ -8,5 +8,6 @@
   		<typeAlias type="org.hoshi.dto.BoardDTO" alias="boardDTO"/>
   		<typeAlias type="org.hoshi.dto.WriteDTO" alias="writeDTO"/>
   		<typeAlias type="org.hoshi.dto.CommentDTO" alias="commentDTO"/>
+  		<typeAlias type="org.hoshi.dto.LoginDTO" alias="loginDTO"/>
   	</typeAliases>
   </configuration>

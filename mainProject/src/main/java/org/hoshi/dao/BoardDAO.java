@@ -15,8 +15,8 @@ public class BoardDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<BoardDTO> boardList(){
-		return sqlSession.selectList("board.boardList");
+	public List<BoardDTO> boardList(int pageNo){
+		return sqlSession.selectList("board.boardList", pageNo);
 	}
 
 	public BoardDTO detail(int no) {
@@ -33,5 +33,13 @@ public class BoardDAO {
 
 	public List<CommentDTO> commentList(int no) {
 		return sqlSession.selectList("board.commentsList", no);
+	}
+
+	public int postDel(int no) {
+		return sqlSession.update("board.postDel",no);
+	}
+
+	public int totalRecordCount() {
+		return sqlSession.selectOne("board.totalRecordCount");
 	}
 }

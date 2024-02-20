@@ -1,6 +1,13 @@
 @charset "UTF-8";
+.w1{
+	width: 10%;
+}
+.w2{
+	width: 20%;	
+}
 .title{
 	text-align: left;
+	width: 50%;
 }
 .title > a {
 	text-decoration: none;
@@ -10,10 +17,33 @@
 }
 .title > a:hover {
 	color: skyblue;
+	text-shadow: 0.3px 0.3px blue;
 }
 .badge{
 	background-color: skyblue;
 }
 .vh-500{
 	height: 500px;
+}
+.pagings a{
+	text-decoration: none;
+	color: black;
+	font-size: medium;
+}
+.pagings a:hover{
+	color: skyblue;
+	font-weight: bold;
+	text-shadow: 1px 1px black;
+}
+strong{
+	color: skyblue;
+	text-shadow: 1px 1px black;
+}
+.arrows{
+}
+table{
+	width: 100%;
+}
+.writeBtn{
+	margin-top: 10px;
 }

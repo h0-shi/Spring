@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -37,6 +38,7 @@
 	<link href="css/styles.css" rel="stylesheet" />
 	<link href="css/board.css" rel="stylesheet" />
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script type="text/javascript">
 	function writeCheck(){
@@ -82,11 +84,16 @@
 			}
 		})
 	}
+	
+function linkPage(pageNo){
+	location.href = "/board?pageNo="+pageNo;
+}	
 </script>
 </head>
     <body id="page-top">
         <!-- Navigation-->
-        <c:import url="menu.jsp"/>
+        <%-- <c:import url="menu.jsp"/> --%>
+        <%@ include file="menu.jsp" %>
         
         <!-- 게시판 -->
         <section class="page-section" id="services">
@@ -108,18 +115,22 @@
 						<tbody>
 							<c:forEach items="${list }" var="row">
 							<tr>
-								<td onclick="detail(${row.board_no})">${row.board_no }</td>
+								<td onclick="detail(${row.board_no})" class="w1">${row.board_no }</td>
 								<td class="title" ><a href='/detail?no=${row.board_no }'>${row.board_title }
 								<c:if test="${row.comment ne 0}"><span class="badge">${row.comment }</span></c:if></a></td>
-								<td>${row.board_write }</td>
-								<td>${row.board_date }</td>
-								<td>${row.board_count }</td>
+								<td class="w2">${row.board_write }</td>
+								<td class="w1">${row.board_count }</td>
+								<td class="w1">${row.board_date }</td>
 							</tr>
 							</c:forEach>
 						</tbody>
 					</table>
-					<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#write">글쓰기</button>
-					<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#detail">디테일</button>
+					<!-- 페이징 -->
+					<div class="pagings" >
+						<ui:pagination paginationInfo="${paginationInfo }" type="image" jsFunction="linkPage"/>
+					</div>
+					<button type="button" class="btn btn-info writeBtn" data-bs-toggle="modal" data-bs-target="#write">글쓰기</button>
+					<%-- <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#detail">디테일</button> --%>
                 </div>
             </div>
         </section>      
