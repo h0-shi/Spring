@@ -34,16 +34,28 @@
 	<!-- Google fonts-->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+	
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Gowun+Dodum&family=Nanum+Gothic&family=Nanum+Myeongjo&display=swap" rel="stylesheet">>
 	<!-- Core theme CSS (includes Bootstrap)-->
 	<link href="css/styles.css" rel="stylesheet" />
 	<link href="css/board.css" rel="stylesheet" />
+	
+	<link href="https://cdn.jsdelivr.net/npm/suneditor@latest/dist/css/suneditor.min.css" rel="stylesheet">
+	<!-- <link href="https://cdn.jsdelivr.net/npm/suneditor@latest/assets/css/suneditor.css" rel="stylesheet"> -->
+	<!-- <link href="https://cdn.jsdelivr.net/npm/suneditor@latest/assets/css/suneditor-contents.css" rel="stylesheet"> -->
+	<script src="https://cdn.jsdelivr.net/npm/suneditor@latest/dist/suneditor.min.js"></script>
+	<!-- languages (Basic Language: English/en) -->
+	<script src="https://cdn.jsdelivr.net/npm/suneditor@latest/src/lang/ko.js"></script>
+	
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script type="text/javascript">
 	function writeCheck(){
 		let title = document.querySelector("#title");
-		let content = document.querySelector("#content");
+		let content = document.querySelector("#sample");
 		if(title.value.length < 4){
 			alert("제목 이상");
 			title.focus();
@@ -88,6 +100,7 @@
 function linkPage(pageNo){
 	location.href = "/board?pageNo="+pageNo;
 }	
+
 </script>
 </head>
     <body id="page-top">
@@ -118,7 +131,7 @@ function linkPage(pageNo){
 								<td onclick="detail(${row.board_no})" class="w1">${row.board_no }</td>
 								<td class="title" ><a href='/detail?no=${row.board_no }'>${row.board_title }
 								<c:if test="${row.comment ne 0}"><span class="badge">${row.comment }</span></c:if></a></td>
-								<td class="w2">${row.board_write }</td>
+								<td class="w2">${row.mname }</td>
 								<td class="w1">${row.board_count }</td>
 								<td class="w1">${row.board_date }</td>
 							</tr>
@@ -129,12 +142,15 @@ function linkPage(pageNo){
 					<div class="pagings" >
 						<ui:pagination paginationInfo="${paginationInfo }" type="image" jsFunction="linkPage"/>
 					</div>
+					<c:if test="${sessionScope.mid ne null }">
 					<button type="button" class="btn btn-info writeBtn" data-bs-toggle="modal" data-bs-target="#write">글쓰기</button>
+					</c:if>
 					<%-- <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#detail">디테일</button> --%>
                 </div>
             </div>
         </section>      
 		<!-- 글쓰기 모달 만들기 -->
+		<c:if test="${sessionScope.mid ne null }">
 		<div class="modal" id="write">
 			<div class="modal-dialog modal-xl">
 				<div class="modal-content">
@@ -146,7 +162,7 @@ function linkPage(pageNo){
 						<div class="">
 							<form action="./write" method="post" onsubmit="return writeCheck()" name="frm">
 								<input type="text" id="title" name="title" class="form-control mb-2" placeholder="제목" required="required">
-								<textarea name="content" id="content" class="form-control mb-2 vh-500" placeholder="내용" required="required"></textarea>
+								<textarea name="content" id="sample" class="form-control mb-2 vh-500" placeholder="내용" required="required"></textarea>
 								<button type="submit" class="btn btn-info" style="width:100%;">글쓰기</button>
 							</form>
 						</div>
@@ -157,6 +173,7 @@ function linkPage(pageNo){
 				</div>
 			</div>
 		</div> 
+		</c:if>
 		<!-- 톺아보기 modal -->
 		<div class="modal" id="detail">
 			<div class="modal-dialog modal-xl">
@@ -184,5 +201,19 @@ function linkPage(pageNo){
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script type="text/javascript">
+        /**
+        * ID : 'suneditor_sample'
+        * ClassName : 'sun-eidtor'
+        */
+        // ID or DOM object
+        const editor = SUNEDITOR.create((document.getElementById('sample') || 'sample'),{
+            // All of the plugins are loaded in the "window.SUNEDITOR" object in dist/suneditor.min.js file
+            // Insert options
+            // Language global object (default: en)
+            height: '400',
+            lang: SUNEDITOR_LANG['ko']
+        });
+        </script>
     </body>
 </html>

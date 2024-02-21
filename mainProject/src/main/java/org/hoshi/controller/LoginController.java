@@ -32,10 +32,21 @@ public class LoginController {
 		
 		//dto가 들어가서 mname 나옴
 		LoginDTO login = loginService.login(loginDTO);
-		if(login.getCount() ==1) {
-			HttpSession session = request.getSession();
-			session.setAttribute("mid", id);
-			session.setAttribute("mname", login.getMname());
+		if(login.getCount() ==1 && login.getMcount() < 5) {
+			if(login.getPw().equals(loginDTO.getPw())) {
+				HttpSession session = request.getSession();
+				session.setAttribute("mid", id);
+				session.setAttribute("mname", login.getMname());
+				loginService.mcountDown(loginDTO);
+			} else {
+				loginService.mcountUp(loginDTO);
+				return "redirect:/login?count="+login.getMcount();
+			}
+		} else if(login.getCount() ==1 && login.getMcount() > 5){
+			loginService.mcountUp(loginDTO);
+			return "redirect:/login?count="+login.getMcount();
+		} else {
+			return "redirect:/login?login=2048";
 		}
 		return "redirect:/index";
 	}

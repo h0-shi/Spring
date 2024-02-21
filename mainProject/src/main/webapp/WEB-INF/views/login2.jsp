@@ -33,25 +33,11 @@
 <!-- Google fonts-->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
-
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Gowun+Dodum&family=Nanum+Gothic&family=Nanum+Myeongjo&display=swap" rel="stylesheet">>
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="css/styles.css" rel="stylesheet" />
 <!-- xeicon -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style type="text/css">
-body{
-	background-image: url('./img/blueBackground.jpg');
-	background-size: cover;
-	height: 100vh;
-	font-family: "Gowun Dodum", sans-serif;
-	font-weight: 400;
-	font-style: normal;
-}
 img{
 	padding: 0;
 	margin: 5px 0px;
@@ -60,68 +46,7 @@ img{
 	padding: 0;
 	margin: 5px 0px;
 }
-.pwIn, .idIn{
-	vertical-align: center;
-	border: none;
-	background-color: transparent;
-	color: white;
-}
-input{
-	border: none;
-    background-color: #transparent; 
-    color: #ffffff;
-}
-input::placeholder {
-    color: #ffffff;
-}
-input:focus {
-	outline: none;
-}
-.inputLine{
-	border-bottom: 1px solid white;
-}
-.icon{
-	color: #ffffff;
-	text-align: right;
-	font-size: x-large;
-}
-.inputArea{
-	display: flex;
-	align-items: center;
-}
-.submit{
-	height: 32px;
-	width: 250px;
-	border-radius: 2px;
-	background-color: rgba(0,0,0,0.3);
-	color: white;
-	border: 1px solid white;
-}
-.submit:hover {
-	background-color: rgba(0,0,0,0.45);
-}
-.loginimg{
-	margin-top: 50px;
-}
-.links{
-	width: 100%;
-	margin-bottom: 10px;
-	text-align: right;
-	font-size: smaller;
-}
-.links a{
-	text-decoration: none;
-	color: white;
-}
-.links a:hover{
-	color: black;
-}
 </style>
-<script type="text/javascript">
-function join(){
-	alert("회원가입은 아직 구현되지 않았네요~");
-}
-</script>
 </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -132,28 +57,25 @@ function join(){
             <div class="d-flex justify-content-center">
                <div class="text-center">
                		<form action="./login" method="post">
-						<img class="loginimg" alt="login" src="./img/login.png" width="250px;">
-					<div class="mb-3 row inputLine">
-						<label for="id" class="col-sm-3 col-form-label icon"><i class="xi-user-o"></i></label>
-						<div class="col-sm-8 inputArea">
-							<input type="text" class="idIn" id="id" placeholder="아이디를 입력하세요" name="id">
-						</div>
-					</div>
-					<div class="mb-3 row inputLine">
-						<label for="pw" class="col-sm-3 col-form-label icon"><i class="xi-lock-o"></i></label>
-						<div class="col-sm-8 inputArea">
-							<input type="password" class="pwIn" id="pw" placeholder="암호를 입력하세요" name="pw">
+					<img alt="login" src="./img/login.jpg" width="250px;">
+					<div class="mb-3 row">
+						<label for="id" class="col-sm-3 col-form-label">I D</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="id" placeholder="아이디를 입력하세요" name="id">
 						</div>
 					</div>
 					<div class="mb-3 row">
-						<div>
-							<div class="links">
-								<a href="javascript:void(0)" onclick="join()">회원가입</a>
-							</div>
+						<label for="pw" class="col-sm-3 col-form-label">Password</label>
+						<div class="col-sm-8">
+							<input type="password" class="form-control" id="pw" placeholder="암호를 입력하세요" name="pw">
 						</div>
-						<div class="">
-							<button type="submit" id="login" class="submit">login</button>
+					</div>
+					<div class="mb-3 row">
+						<div class="col-sm-12">
+							<button type="reset" id="login" class="btn btn-primary">reset</button>
+							<button type="submit" id="login" class="btn btn-primary">login</button>
 						</div>
+							<button type="button" id="join" class="btn btn-info joinBtn">가입하기</button>
 					</div>
 					</form>
             	</div>
@@ -169,30 +91,5 @@ function join(){
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-        
-        <!-- error 발생시 alert 출력 -->
-        <c:if test="${param.error ne null }">
-        	<script type="text/javascript">
-        		Swal.fire("Oooops!","로그인 해주세요","error");
-        	</script>
-        </c:if>
-        
-        <c:if test="${param.login ne null }">
-        	<script type="text/javascript">
-        		Swal.fire("Oooops!","올바른 아이디와 비밀번호를 입력하세요","error");
-        	</script>
-        </c:if>
-        
-        <c:if test="${param.count ne null  }">
-        	<script type="text/javascript">
-        	let count = ${param.count};
-        	if(count < 5) {
-        		Swal.fire("로그인 정보를 확인하세요","5회 이상 실패시 계정이 잠깁니다. <br>"+(5-(count+1))+"회 실패시, 계정이 잠깁니다.","warning");
-        	} else{
-        		Swal.fire("로그인 불가","5회 이상 로그인을 시도한 계정입니다. 관리자에게 문의해주세요","warning");
-        	}
-        	</script>
-        </c:if>
-        
     </body>
 </html>

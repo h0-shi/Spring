@@ -15,4 +15,12 @@ public class LoginDAO {
 		return sqlSession.selectOne("login.login",dto);
 	}
 
+	public int mcountUp(LoginDTO loginDTO) {
+		return sqlSession.update("login.mcountUp",loginDTO);
+	}
+
+	public int mcountDown(LoginDTO loginDTO) {
+		return sqlSession.update("login.mcountDown",loginDTO);
+	}
+
 }

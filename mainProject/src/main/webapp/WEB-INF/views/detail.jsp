@@ -70,6 +70,12 @@ function deletePost(){
       });
 }
 
+function commentDelete(no){
+	if(confirm("삭제하시겠습니까?")){
+	location.href="./deleteComment?no=${detail.board_no }&cno="+no;
+	}
+}
+
 $(function(){
 	$("#commentBtn").click(function(){
 		let comment = $(this).parents(".btnArea").siblings(".cArea").children(".commentArea").val();
@@ -92,9 +98,15 @@ $(function(){
 			lengBtn.css("color","white");
 		}
 	});
+
 });
 </script>
 <style type="text/css">
+body{
+	font-family: "Gowun Dodum", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+}
 .writeBox{
 	padding: 10px 5px;
 }
@@ -115,7 +127,7 @@ $(function(){
 	border-radius: 0px 5px 5px 0px;
 }
 .comment{
-	margin: 10px 0px;
+	margin: 5px 0px;
 	padding: 10px 10px 0px 10px;
 	border-top: 0.3px solid skyblue;
 }
@@ -138,9 +150,9 @@ $(function(){
 .cText{
 	width: 100%;
 	height: auto;
-  	font-family: "Gowun Dodum", sans-serif;
-	font-weight: 400;
 	font-style: normal;
+	float: left;
+	margin: 5px 4px;
 }
 .commentInfo{
 	font-size: smaller;
@@ -187,6 +199,19 @@ $(function(){
 .leng{
 	font-size: x-small;
 }
+.span{
+	text-align: right;
+	font-size: smaller;
+	font-family: "Gowun Dodum", sans-serif;
+	font-weight: 400;
+}
+.span a{
+	text-decoration: none;
+	color : grey;
+}
+.span span a:hover{
+	color:black;
+}
 </style>
 </head>
 <body id="page-top">
@@ -203,9 +228,11 @@ $(function(){
 				<div class="card-body">
 					<div class="h2 title">${detail.board_title }</div>
 					<div class="row p-2 writerInfo">
-						<div class="col align-middle text-start">${detail.board_write } &ensp;
-						<img alt="edit" src="./img/edit.png" class="edit">
-						<img alt="del" src="./img/delete.png" class="del" title="글 삭제" onclick="deletePost(${detail.board_no})">
+						<div class="col align-middle text-start">${detail.mname } &ensp;
+						<c:if test="${detail.mname eq sessionScope.mname && detail.mid eq sessionScope.mid }">
+							<img alt="edit" src="./img/edit.png" class="edit">
+							<img alt="del" src="./img/delete.png" class="del" title="글 삭제" onclick="deletePost()">
+						</c:if>
 						</div>
 						<div class="col align-middle text-end detailDate">${detail.board_date }</div>
 					</div>
@@ -218,15 +245,22 @@ $(function(){
 		<hr>
 		<div class="commentInfo">댓글 (${detail.comment })&ensp; <button class="goBtn" onclick="location.href='#writeBox'">댓글 쓰기</button></div>
 		<c:forEach items="${commentsList}" var="c">
-			<div class="comment">
+			<div class="comment clearfix">
 				<div class="userImg">
 					<img alt="user" src="./img/user.png">
 				</div>
-				<div class="id">${c.mid }</div>
-				<div class="like">👍${c.clike }</div>
+				<div class="id">${c.mname } </div>
+				<div class="like">👍${c.clike } </div>
 				<div class="ip">${c.cip }</div>
 				<div class="date">${c.cdate} </div>
 				<div class="cText">${c.comment }</div>
+				<c:if test="${c.mname eq sessionScope.mname && c.mid eq sessionScope.mid }">
+					<div class="span">
+						<span class="cEdit"><a href="">수정&ensp;</a></span>
+						|
+						<span class="cDel"><a href="javascript:void(0)" onclick="commentDelete(${c.no })">&ensp;삭제&ensp;</a></span>
+					</div>
+				</c:if>
 			</div>
 		</c:forEach>
 		

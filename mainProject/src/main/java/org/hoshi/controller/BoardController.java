@@ -74,32 +74,59 @@ public class BoardController {
 	}
 	
 	@PostMapping("/write") //제목+내용 받음, DB저장, 보드로
-	public String write(WriteDTO dto, HttpServletRequest request) {
-		int result = boardService.write(dto, request);
+	public String write(WriteDTO dto) {
 		// 추후 세션 관련 작업 필요
-		if(result==1) {
-			return "redirect:/detail?no="+dto.getBoard_no();
+		if(util.getSession().getAttribute("mid") != null ) {
+			int result = boardService.write(dto);
+			if(result==1) {
+				return "redirect:/detail?no="+dto.getBoard_no();
+			} else {
+				return "redirect:/error";
+			}
 		} else {
-			return "redirect:/error";
+			return "redirect:/login";
 		}
+	}
+	
+	@GetMapping("write")
+	public String write() {
+		return "redirect:/login?error=2048";
 	}
 	
 	//댓글 쓰기 24.02.19 글번호, 댓글내용, 글쓴이
 	@PostMapping("/commentWrite")
-	public String commentWrite(CommentDTO comment, HttpServletRequest request) {
-		HttpSession session =request.getSession();
-		comment.setMid(session.getAttribute("mid")+"");
-		int result = boardService.commentWrite(comment);
-		
-		return "redirect:/detail?no="+comment.getNo();
+	public String commentWrite(CommentDTO comment) {
+		//HttpSession session =request.getSession();
+		//comment.setMid(session.getAttribute("mid")+"");
+		if(util.getSession().getAttribute("mid") != null ) {
+			int result = boardService.commentWrite(comment);
+			return "redirect:/detail?no="+comment.getNo();
+		} else {
+			return "redirect:/login";
+		}
 	}
 	
 	@PostMapping("/postDel")
 	public String postDel(@RequestParam("no") int no) {
+		//로그인 여부 확인 및 정보 확인
 		//System.out.println("no : "+no);
-		int result = boardService.postDel(no);
-		System.out.println("result : "+result);
-		return "redirect:/board";
+		
+		if(util.getSession().getAttribute("mid") != null) {
+			int result = boardService.postDel(no);
+			if(result == 1) {
+				return "redirect:/board";
+			} else {
+				return "redirect:/error";
+			}
+		}
+		return "redirect:/login";
 	}
 	
+	//댓글번호, mid, 글번호 와야 함_댓글번호+글번호를 파라미터로 받자
+	@GetMapping("deleteComment")
+	public String deleteComment(@RequestParam("no") int no, @RequestParam("cno") int cno) {
+		//System.out.println("글번호는 "+no+" 댓글은 "+cno);
+		int result = boardService.deleteComment(no, cno);
+		return "redirect:/detail?no="+no;
+	}
 }

@@ -15,4 +15,12 @@ public class LoginService {
 		return loginDAO.login(dto);
 	}
 
+	public int mcountUp(LoginDTO loginDTO) {
+		return loginDAO.mcountUp(loginDTO);
+	}
+
+	public int mcountDown(LoginDTO loginDTO) {
+		return loginDAO.mcountDown(loginDTO);
+	}
+
 }
