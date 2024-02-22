@@ -3,18 +3,25 @@ package org.hoshi.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.mail.EmailException;
 import org.hoshi.dto.LoginDTO;
 import org.hoshi.service.LoginService;
+import org.hoshi.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
 
 @Controller
 public class LoginController {
 	
 	@Autowired
 	private LoginService loginService;
+	
+	@Autowired
+	private Util util;
 	
 	@GetMapping("/login")
 	public String login() {
@@ -60,8 +67,18 @@ public class LoginController {
 		if(session.getAttribute("mname") != null) {
 			session.removeAttribute("mname");
 		}
-		session.invalidate();
+		session.invalidate();//이게 뭘까
 		
 		return "redirect:/login";
 	}
+	
+	@GetMapping("/myInfo@{id}")
+	public String myInfo(@PathVariable("id") String id) throws EmailException {
+		if(util.getSession().getAttribute("mid")!=null) {
+			//ajax 용으로 빼둔다?
+			return "myinfo";
+		}
+		return "redirect:/login?error=error";
+	}
+	
 }

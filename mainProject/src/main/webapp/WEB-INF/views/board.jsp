@@ -55,7 +55,7 @@
 <script type="text/javascript">
 	function writeCheck(){
 		let title = document.querySelector("#title");
-		let content = document.querySelector("#sample");
+		let content = document.querySelector("#content");
 		if(title.value.length < 4){
 			alert("제목 이상");
 			title.focus();
@@ -132,8 +132,8 @@ function linkPage(pageNo){
 								<td class="title" ><a href='/detail?no=${row.board_no }'>${row.board_title }
 								<c:if test="${row.comment ne 0}"><span class="badge">${row.comment }</span></c:if></a></td>
 								<td class="w2">${row.mname }</td>
-								<td class="w1">${row.board_count }</td>
 								<td class="w1">${row.board_date }</td>
+								<td class="w1">${row.board_count }</td>
 							</tr>
 							</c:forEach>
 						</tbody>
@@ -162,7 +162,7 @@ function linkPage(pageNo){
 						<div class="">
 							<form action="./write" method="post" onsubmit="return writeCheck()" name="frm">
 								<input type="text" id="title" name="title" class="form-control mb-2" placeholder="제목" required="required">
-								<textarea name="content" id="sample" class="form-control mb-2 vh-500" placeholder="내용" required="required"></textarea>
+								<textarea name="content" id="content" class="form-control mb-2 vh-500" placeholder="내용" required="required"></textarea>
 								<button type="submit" class="btn btn-info" style="width:100%;">글쓰기</button>
 							</form>
 						</div>

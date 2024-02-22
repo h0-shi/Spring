@@ -14,6 +14,7 @@ import org.hoshi.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -129,4 +130,20 @@ public class BoardController {
 		int result = boardService.deleteComment(no, cno);
 		return "redirect:/detail?no="+no;
 	}
+	
+	@GetMapping("/likeUp")
+	public String likeUp(@RequestParam("no") String no, @RequestParam("cno") String cno) {
+		if(util.intCheck(cno)&&util.intCheck(cno)) {
+			CommentDTO dto = new CommentDTO(); 
+			dto.setBoard_no(util.str2Int(no));
+			dto.setNo(util.str2Int(cno));
+			
+			boardService.likeUp(dto);
+			return "redirect:/detail?no="+no;
+		} else {
+			return "redirect:/error";
+		}
+	}
+	
+	
 }

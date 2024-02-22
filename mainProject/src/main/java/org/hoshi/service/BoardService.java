@@ -26,6 +26,12 @@ public class BoardService {
 	}
 
 	public BoardDTO detail(int no) {
+		if(util.getSession().getAttribute("mid") != null) {
+			BoardDTO dto = new BoardDTO();
+			dto.setBoard_no(no);
+			dto.setMid(util.getSession().getAttribute("mid")+"");
+			boardDAO.countUp(dto);
+		}
 		return boardDAO.detail(no);
 	}
 
@@ -68,6 +74,10 @@ public class BoardService {
 		dto.setNo(cno);
 		dto.setMid(util.getSession().getAttribute("mid")+"");
 		return boardDAO.deleteComment(dto);
+	}
+
+	public int likeUp(CommentDTO dto) {
+		return boardDAO.liekUp(dto);
 	}
 
 }

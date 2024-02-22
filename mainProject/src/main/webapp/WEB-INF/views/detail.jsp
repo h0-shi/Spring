@@ -76,6 +76,21 @@ function commentDelete(no){
 	}
 }
 
+function like(cno){
+	Swal.fire({
+        title: "좋아요를 누르시겠습니까?",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "확인",
+        cancelButtonText: "취소",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // 확인 버튼을 클릭한 경우에만 페이지 이동
+            location.href = "./likeUp?no=${detail.board_no}&cno=" + cno;
+        }
+    });
+}
+
 $(function(){
 	$("#commentBtn").click(function(){
 		let comment = $(this).parents(".btnArea").siblings(".cArea").children(".commentArea").val();
@@ -212,6 +227,11 @@ body{
 .span span a:hover{
 	color:black;
 }
+.like a{
+	width: 100%;
+	text-decoration: none;
+	color: black;
+}
 </style>
 </head>
 <body id="page-top">
@@ -250,7 +270,7 @@ body{
 					<img alt="user" src="./img/user.png">
 				</div>
 				<div class="id">${c.mname } </div>
-				<div class="like">👍${c.clike } </div>
+				<div class="like" onclick="like(${c.no})"><a href="javascript:void(0)">👍${c.clike } </a></div>
 				<div class="ip">${c.cip }</div>
 				<div class="date">${c.cdate} </div>
 				<div class="cText">${c.comment }</div>
