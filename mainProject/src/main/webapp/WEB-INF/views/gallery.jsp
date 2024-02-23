@@ -53,7 +53,7 @@
         function fileCheck(){
         	let fileVal = $("#file1").val();
         	if(fileVal == ""){
-        		alert("파일을 선택하세여");
+        		alert("파일을 선택하세요");
         		return false;
         	} else {
 				let ext = fileVal.split('.').pop().toLowerCase(); // 확장자 분리
@@ -61,6 +61,8 @@
 				if($.inArray(ext,['jpg','jpeg','gif','png'])==-1) {
 					alert("jpg, jpeg, png, gif 파일만 업로드 가능합니다");
 					return false;
+				} else {
+			        document.getElementById('galleryForm').submit();
 				}
         	}
         }
@@ -116,19 +118,19 @@
         <section class="page-section" id="my-info">
             <div class="d-flex justify-content-center">
                <div class="text-center">
-               		<form action="./galleryInsert" method="post" class="galleryForm" enctype="multipart/form-data" onsubmit="fileCheck()">
+               		<form action="./galleryInsert" method="post" id="galleryForm" class="galleryForm" enctype="multipart/form-data" onsubmit="return fileCheck()">
 	               		<div class="input-group mb-2">
 							<span class="input-group-text titleSpan" id="basic-addon1">&ensp; 제&ensp;목 &ensp;</span>
 						  	<input type="text" class="form-control titleInput" placeholder="Title" aria-label="Username" aria-describedby="basic-addon1" name ="gtitle">
 						</div>
                			<div class="input-group mb-2 rBottom">
-						  <input type="file" accept="image/*" class="form-control fileIn" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="file1">
+						  <input type="file" accept="image/*" class="form-control fileIn" id="file1" aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="file1">
 						</div>
 						<div class="input-group">
 						  	<span class="input-group-text" style="vertical-align: top;" > &ensp;&ensp;본문&ensp;&ensp; </span>
 						  	<textarea class="form-control" name="gcontent" aria-label="With textarea" placeholder="본문" style="min-height: 500px;"></textarea>
 						</div>
-							<button type="submit" class="btn btn-success submitBtn">보내기</button>
+							<button type="button" onclick="fileCheck()" class="btn btn-success submitBtn">보내기</button>
                		</form>
             	</div>
             </div>
