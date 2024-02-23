@@ -61,9 +61,7 @@
 				if($.inArray(ext,['jpg','jpeg','gif','png'])==-1) {
 					alert("jpg, jpeg, png, gif 파일만 업로드 가능합니다");
 					return false;
-				} else {
-			        document.getElementById('galleryForm').submit();
-				}
+				} 
         	}
         }
         </script>
@@ -130,7 +128,7 @@
 						  	<span class="input-group-text" style="vertical-align: top;" > &ensp;&ensp;본문&ensp;&ensp; </span>
 						  	<textarea class="form-control" name="gcontent" aria-label="With textarea" placeholder="본문" style="min-height: 500px;"></textarea>
 						</div>
-							<button type="button" onclick="fileCheck()" class="btn btn-success submitBtn">보내기</button>
+							<button type="submit" class="btn btn-success submitBtn">보내기</button>
                		</form>
             	</div>
             </div>
