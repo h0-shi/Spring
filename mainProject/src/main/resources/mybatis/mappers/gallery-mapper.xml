@@ -10,7 +10,14 @@
 	</insert>
 	
 	<select id="galleryList" resultType="galleryDTO">
-		SELECT * From gallery ORDER BY gno desc
+		SELECT gno, glike, gtitle, gcontent, gfile, if(date_format(current_timestamp(),'%Y-%m-%d') = date_format(`gdate`,'%Y-%m-%d'),date_format(`gdate`,'%h:%i'),date_format(`gdate`,'%m-%d')) AS `gdate` From gallery WHERE gdel = 1 ORDER BY gno desc
 	</select>
 	
+	<select id="galleryDetail" resultType="galleryDTO" parameterType="Integer">
+		SELECT g.gno, g.glike, g.gtitle, g.gcontent, g.gfile, if(date_format(current_timestamp(),'%Y-%m-%d') = date_format(`gdate`,'%Y-%m-%d'),date_format(`gdate`,'%h:%i'),date_format(`gdate`,'%m-%d')) AS `gdate`, m.mid, m.mname From gallery g JOIN member m ON m.mno = g.mno WHERE g.gdel = 1 AND g.gno = #{no } ORDER BY g.gno desc
+	</select>
+	
+	<update id="galleryDel" parameterType="Integer">
+		UPDATE gallery SET gdel = 0 WHERE gno = #{no }
+	</update>
 </mapper>

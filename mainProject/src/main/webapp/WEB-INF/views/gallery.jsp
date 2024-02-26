@@ -28,6 +28,8 @@
 		<meta name="msapplication-TileColor" content="#ffffff">
 		<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 		<meta name="theme-color" content="#ffffff">
+		
+		<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -37,7 +39,7 @@
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-        <script type="text/javascript">
+<script type="text/javascript">
         const Toast = Swal.mixin({
         	  toast: true,
         	  position: 'center-center',
@@ -64,7 +66,12 @@
 				} 
         	}
         }
-        </script>
+        
+	function galleryDetail(no){
+		location.href="./galleryDetail@"+no;
+	}
+
+</script>
 <style type="text/css">
 .galleryForm{
 	width: 800px;; 
@@ -74,65 +81,111 @@
 	margin: 10px 0px;
 	width: 100%;
 } 
+.section{
+	width: 310px;
+	height: 210px;
+	margin: 5px; 
+	padding: 0;
+	border: 1px solid #A8A8A8;
+	display: inline-block;
+}
+.thumbnail{
+	width: 100%;
+	height: 167px;
+}
+.spans{
+	width: 100%;
+	height: 42px;
+	background-color: #CFCFCF;
+	border-bottom: 1px solid #A8A8A8;
+}
+.views{
+	margin-left: 10px;
+	float: left;
+	line-height: 42px;
+}
+.time{
+	margin-right: 10px;
+	float: right;
+	line-height: 42px;
+}
+.itemBox{
+	width: 100%;
+	text-align: center;
+}
+.wrapText{
+	width: 310px;
+	height: 167px;
+	padding: 10px 5px;
+	text-align: center;
+	position: absolute;
+	box-sizing: border-box;
+	color: rgba(0, 0, 0, 0);
+}
+.wrapText:hover{
+	color: rgba(255, 255, 255, 1);
+	background-color: rgba(0, 0, 0, 0.3);
+}
 </style>        
     </head>
     <body id="page-top">
         <!-- Navigation-->
         <%@ include file="menu.jsp" %>
-        <div class="container">
-       		<div class="text-center">
-            	<h2 class="section-heading text-uppercase">게시판</h2>
-        	</div>
-	        <div class="row text-center">
-		        <table>
-		        	<thead>
-		        		<tr>
-		        			<td>번호</td>
-		        			<td>제목</td>
-		        			<td>이미지</td>
-		        			<td>날짜</td>
-		        			<td>좋아요</td>
-		        		</tr>
-		        	</thead>
-		        	<tbody>
-		        		<c:forEach items="${list }" var="row">
-							<tr>
-								<td>${row.gno }</td>
-								<td>${row.gtitle }</td>
-								<td>
-									<img alt="사진" src="./thumbnail/s_${row.gfile }">
-								</td>
-								<td>${row.gdate }</td>
-								<td>${row.glike }</td>
-							</tr>        	
-		        		</c:forEach>
-		        	</tbody>
-		        	
-		        </table>
+        <section class="page-section" id="detail">
+	        <div class="container">
+	       		<div class="text-center">
+	            	<h2 class="section-heading text-uppercase"> 갤러라리</h2>
+	            	<c:if test="${sessionScope.mid ne null }">
+					<button type="button" class="btn btn-info writeBtn" data-bs-toggle="modal" data-bs-target="#write">글쓰기</button>
+					</c:if>
+	        	</div>
+	        	<div class="row text-center">
+	        		<div class="itemBox">
+			        	<c:forEach items="${list }" var="row">
+						   	<div class="section">
+							   	<div class="warpImg">
+									<div class="wrapText" onclick="galleryDetail(${row.gno})"> ${row.gtitle } </div>
+							   		<img alt="사진" src="./thumbnail/s_${row.gfile }" class="thumbnail">
+							   	</div>
+						   		<div class="spans">
+									<span class="views"><i class="xi-eye-o"></i> ${row.glike }</span>		   	
+									<span class="time"><i class="xi-clock-o"></i> ${row.gdate }</span>		   	
+						   		</div>
+						   	</div>
+			        	</c:forEach>
+	        		</div>
+		        </div>
 	        </div>
-        </div>
-        
+	    </section>
         <!-- login-->
-        <section class="page-section" id="my-info">
-            <div class="d-flex justify-content-center">
-               <div class="text-center">
-               		<form action="./galleryInsert" method="post" id="galleryForm" class="galleryForm" enctype="multipart/form-data" onsubmit="return fileCheck()">
-	               		<div class="input-group mb-2">
-							<span class="input-group-text titleSpan" id="basic-addon1">&ensp; 제&ensp;목 &ensp;</span>
-						  	<input type="text" class="form-control titleInput" placeholder="Title" aria-label="Username" aria-describedby="basic-addon1" name ="gtitle">
-						</div>
-               			<div class="input-group mb-2 rBottom">
-						  <input type="file" accept="image/*" class="form-control fileIn" id="file1" aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="file1">
-						</div>
-						<div class="input-group">
-						  	<span class="input-group-text" style="vertical-align: top;" > &ensp;&ensp;본문&ensp;&ensp; </span>
-						  	<textarea class="form-control" name="gcontent" aria-label="With textarea" placeholder="본문" style="min-height: 500px;"></textarea>
-						</div>
-							<button type="submit" class="btn btn-success submitBtn">보내기</button>
-               		</form>
-            	</div>
-            </div>
-        </section>
+        <c:if test="${sessionScope.mid ne null }">
+	        <div class="modal" id="write">
+				<div class="modal-dialog modal-xl">
+					<div class="modal-content">
+				        <section class="page-section" id="my-info">
+				            <div class="d-flex justify-content-center">
+				               <div class="text-center">
+				               		<form action="./galleryInsert" method="post" id="galleryForm" class="galleryForm" enctype="multipart/form-data" onsubmit="return fileCheck()">
+					               		<div class="input-group mb-2">
+											<span class="input-group-text titleSpan" id="basic-addon1">&ensp; 제&ensp;목 &ensp;</span>
+										  	<input type="text" class="form-control titleInput" placeholder="Title" aria-label="Username" aria-describedby="basic-addon1" name ="gtitle">
+										</div>
+				               			<div class="input-group mb-2 rBottom">
+										  <input type="file" accept="image/*" class="form-control fileIn" id="file1" aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="file1">
+										</div>
+										<div class="input-group">
+										  	<span class="input-group-text" style="vertical-align: top;" > &ensp;&ensp;본문&ensp;&ensp; </span>
+										  	<textarea class="form-control" name="gcontent" aria-label="With textarea" placeholder="본문" style="min-height: 500px;"></textarea>
+										</div>
+											<button type="submit" class="btn btn-success submitBtn">작성</button>
+				               		</form>
+				            	</div>
+				            </div>
+				        </section>
+				      </div>
+				</div>
+			</div>
+		</c:if>
         
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -7,7 +7,7 @@ import org.apache.commons.mail.SimpleEmail;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MailService2 {
+public class MailService2 extends AbstractService {
 
 	public void sendTextMail(String email, String title, String content) throws EmailException {
 		String emailAddr = "";	//얘는 보내는 사람 주소 - outlook

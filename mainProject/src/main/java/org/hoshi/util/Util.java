@@ -166,7 +166,7 @@ public class Util {
 			}
 			try {
 				FileOutputStream thumbnail = new FileOutputStream(new File(thumbnailRoot,"s_"+newFileName));
-				Thumbnailator.createThumbnail(upFile.getInputStream(),thumbnail,100,100);
+				Thumbnailator.createThumbnail(upFile.getInputStream(),thumbnail,310,167);
 				upFile.transferTo(file);
 				thumbnail.close();
 			} catch (IllegalStateException e) {

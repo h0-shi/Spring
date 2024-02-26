@@ -2,18 +2,13 @@ package org.hoshi.dao;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
 import org.hoshi.dto.BoardDTO;
 import org.hoshi.dto.CommentDTO;
 import org.hoshi.dto.WriteDTO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class BoardDAO {
-	
-	@Autowired
-	private SqlSession sqlSession;
+public class BoardDAO extends AbstractDAO {
 	
 	public List<BoardDTO> boardList(int pageNo){
 		return sqlSession.selectList("board.boardList", pageNo);

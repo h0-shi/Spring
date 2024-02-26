@@ -89,7 +89,7 @@ public class BoardController {
 		}
 	}
 	
-	@GetMapping("write")
+	@GetMapping("/write")
 	public String write() {
 		return "redirect:/login?error=2048";
 	}
