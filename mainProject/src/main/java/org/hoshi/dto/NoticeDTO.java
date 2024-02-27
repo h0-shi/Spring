@@ -8,5 +8,5 @@ import lombok.Setter;
 public class NoticeDTO {
 	
 	private int nno, ndel, ncount, nlike;
-	private String ntitle, ncontent, ndate;
+	private String ntitle, ncontent, ndate, mid, mname;
 }

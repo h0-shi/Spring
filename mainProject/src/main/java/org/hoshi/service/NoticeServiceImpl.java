@@ -14,8 +14,32 @@ public class NoticeServiceImpl extends AbstractService implements NoticeService{
 	private NoticeDAO noticeDAO;
 	
 	@Override
-	public List<NoticeDTO> noticeList() {
-		return noticeDAO.noticeList();
+	public List<NoticeDTO> noticeList(int no) {
+		return noticeDAO.noticeList(no);
+	}
+	
+	@Override
+	public NoticeDTO noticeDetail(int no) {
+		return noticeDAO.noticeDetail(no);
+	}
+	
+	@Override
+	public int noticeWrite(NoticeDTO dto) {
+		return noticeDAO.noticeWrite(dto);
+	}
+	
+	@Override
+	public int noticeDel(int no) {
+		return noticeDAO.noticeDel(no);
+	}
+	
+	@Override
+	public int noticeUpdate(NoticeDTO dto) {
+		return 0;
+	}
+
+	public int totalRecordCount() {
+		return noticeDAO.totalRecordCount();
 	}
 
 }

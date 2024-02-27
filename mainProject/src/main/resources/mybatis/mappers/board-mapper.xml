@@ -16,7 +16,7 @@
   		</resultMap>
   
 	  <select id="boardList" resultType="boardDTO" parameterType="Integer">
-	  	SELECT board_no, board_title, board_write as mname, board_date, board_count, comment FROM boardview LIMIT #{pageNo },10
+	  	SELECT board_no, board_title, board_write as mname, board_date, board_count, comment FROM boardview LIMIT #{pageNo },10 
 	  </select>
 	  
 	  <select id="detail" resultType="boardDTO" parameterType="Integer">

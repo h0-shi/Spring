@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -78,7 +79,7 @@ function linkPage(pageNo){
         <!-- Navigation-->
         <%-- <c:import url="menu.jsp"/> --%>
         <%@ include file="menu.jsp" %>
-        
+        <%@page import ="java.time.*" %>
         <!-- 게시판 -->
         <section class="page-section" id="services">
             <div class="container">
@@ -98,14 +99,24 @@ function linkPage(pageNo){
 						</thead>
 						<tbody>
 							<c:forEach items="${list }" var="row">
+
+							<c:set var="today"><fmt:formatDate value="<%=new java.util.Date()%>" pattern="yy-MM-dd" /></c:set>
+							<fmt:parseDate var="dateString" value="${row.board_date }" pattern="yyyy-MM-dd HH:mm:ss" />
+							 
 							<tr>
 								<td onclick="detail(${row.board_no})" class="w1">${row.board_no }</td>
-								<td class="title" ><a href='/detail?no=${row.board_no }'>${row.board_title }
-								<c:if test="${row.comment ne 0}"><span class="badge">${row.comment }</span></c:if></a></td>
-								<td class="w2">${row.mname }</td>
-								<td class="w1">${row.board_date }</td>
+								<td class="title" >
+									<c:if test="${LocalDate.now() lt row.board_date}"><span class="badge text-bg-info">N</span></c:if>
+									<a href='/detail?no=${row.board_no }'>${row.board_title } 
+									<c:if test="${row.comment ne 0}"><span class="comments"> [${row.comment }]</span></c:if></a></td>
+								<td class="w2">${row.mname } </td>
+								<td class="w1">
+									<c:if test="${LocalDate.now() lt row.board_date}"><fmt:formatDate  value="${dateString }" pattern="HH:mm" /></c:if>
+									<c:if test="${LocalDate.now() gt row.board_date}"><fmt:formatDate  value="${dateString }" pattern="YYYY-MM-dd" /></c:if>			
+								</td>
 								<td class="w1">${row.board_count }</td>
 							</tr>
+							
 							</c:forEach>
 						</tbody>
 					</table>

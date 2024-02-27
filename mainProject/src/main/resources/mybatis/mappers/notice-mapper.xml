@@ -5,7 +5,21 @@
   
   <mapper namespace="notice">
   	<select id="noticeList" resultType="noticeDTO">
-  		SELECT nno, ncount, nlike, ntitle, DATE_FORMAT(ndate ,'%Y-%m-%d') as ndate from notice WHERE ndel = 1
+  		SELECT nno, ncount, nlike, ntitle, DATE_FORMAT(ndate ,'%Y-%m-%d') as ndate FROM notice WHERE ndel = 1 ORDER BY nno DESC LIMIT #{no},10
   	</select>
-  	
+	<select id="noticeDetail" parameterType="Integer" resultType="noticeDTO">
+		SELECT nno, ncount, nlike, ntitle, ncontent, DATE_FORMAT(ndate ,'%Y-%m-%d') as ndate, mname from notice WHERE ndel = 1 AND nno = #{no}
+	</select>
+	
+	<insert id="noticeWrite" parameterType="noticeDTO">
+		INSERT INTO notice (ntitle, ncontent) VALUES (#{ntitle}, #{ncontent}) 
+	</insert>
+	
+	<update id="noticeDel" parameterType="Integer">
+		UPDATE notice SET ndel = 0 WHERE nno=#{no}
+	</update>
+	
+	<select id="totalRecordCount" resultType="Integer">
+		SELECT COUNT(*) FROM notice WHERE ndel = 1
+	</select>  	
   </mapper>

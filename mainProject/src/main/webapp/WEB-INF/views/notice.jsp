@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -69,10 +71,24 @@
 	}
 	
 function linkPage(pageNo){
-	location.href = "/board?pageNo="+pageNo;
+	location.href = "/notice?pageNo="+pageNo;
 }	
 
 </script>
+<style type="text/css">
+.notice{
+	width: 1320px;
+	font-size: xx-large;
+	font-weight: bold;
+	position: absolute;
+	text-align: center;
+	color: skyblue;
+	box-sizing: border-box;
+}
+.nullImg{
+	position: relative;
+}
+</style>
 </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -86,6 +102,8 @@ function linkPage(pageNo){
                     <h2 class="section-heading text-uppercase">공지사항</h2>
                 </div>
                 <div class="row text-center">
+                <c:choose>
+                	<c:when test="${fn:length(list) > 0 }">
                     <table class="table table-hover">
 						<thead>
 							<tr>
@@ -98,9 +116,17 @@ function linkPage(pageNo){
 						</thead>
 						<tbody>
 							<c:forEach items="${list }" var="row">
-							<tr>
-								<td onclick="detail(${row.nno})" class="w1">${row.nno }</td>
-								<td class="title" ><a href='/detail?no=${row.nno }'>${row.ntitle }</a></td>
+							<tr onclick="location.href='/noticeDetail?no=${row.nno }'">
+								<td class="w1">${row.nno }</td>
+								<td class="title" >
+								<c:set var="today">
+									<fmt:formatDate value="<%=new java.util.Date()%>" pattern="YYYY-MM-dd"/>
+								</c:set>
+								<c:if test="${row.ndate eq today }">
+									<span class="badge text-bg-info">N</span>
+								</c:if>
+								
+								<a href='/noticeDetail?no=${row.nno }'>${row.ntitle }</a></td>
 								<%-- <c:if test="${row.comment ne 0}"><span class="badge">${row.comment }</span></c:if></a></td> --%>
 								<td class="w2">관리자</td>
 								<td class="w1">${row.ndate }</td>
@@ -109,14 +135,22 @@ function linkPage(pageNo){
 							</c:forEach>
 						</tbody>
 					</table>
-					<!-- 페이징 --><%-- 
-					<div class="pagings" >
+                	</c:when>
+                	<c:otherwise>
+	                	<img alt="nothing" src="/img/null.gif" class="nullImg">
+	                	<div class="notice">
+	                		아직 아무것도 올라오지 않았습니다!
+	                	</div>
+                	</c:otherwise>
+                </c:choose>
+					<c:if test="${sessionScope.mid ne null }">
+					</c:if>
+					<!-- <button type="button" class="btn btn-info writeBtn" data-bs-toggle="modal" data-bs-target="#write">글쓰기</button> -->
+					<button type="button" class="btn btn-info" onclick="location.href='/admin/noticeWrite'">공지쓰기</button>
+					<!-- 페이징 -->
+					<div class="pagings">
 						<ui:pagination paginationInfo="${paginationInfo }" type="image" jsFunction="linkPage"/>
 					</div>
-					<c:if test="${sessionScope.mid ne null }">
-					<button type="button" class="btn btn-info writeBtn" data-bs-toggle="modal" data-bs-target="#write">글쓰기</button>
-					</c:if> --%>
-					<%-- <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#detail">디테일</button> --%>
                 </div>
             </div>
         </section>      
@@ -172,19 +206,5 @@ function linkPage(pageNo){
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-        <script type="text/javascript">
-        /**
-        * ID : 'suneditor_sample'
-        * ClassName : 'sun-eidtor'
-        */
-        // ID or DOM object
-        const editor = SUNEDITOR.create((document.getElementById('sample') || 'sample'),{
-            // All of the plugins are loaded in the "window.SUNEDITOR" object in dist/suneditor.min.js file
-            // Insert options
-            // Language global object (default: en)
-            height: '400',
-            lang: SUNEDITOR_LANG['ko']
-        });
-        </script>
     </body>
 </html>
