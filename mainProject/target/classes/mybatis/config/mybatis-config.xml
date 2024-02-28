@@ -11,5 +11,6 @@
   		<typeAlias type="org.hoshi.dto.LoginDTO" alias="loginDTO"/>
   		<typeAlias type="org.hoshi.dto.GalleryDTO" alias="galleryDTO"/>
   		<typeAlias type="org.hoshi.dto.NoticeDTO" alias="noticeDTO"/>
+  		<typeAlias type="org.hoshi.dto.MemberDTO" alias="memberDTO"/>
   	</typeAliases>
   </configuration>

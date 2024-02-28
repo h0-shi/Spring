@@ -1,6 +1,7 @@
 package org.hoshi.dao;
 
 import org.hoshi.dto.LoginDTO;
+import org.hoshi.dto.MemberDTO;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -15,6 +16,18 @@ public class LoginDAO extends AbstractDAO {
 
 	public int mcountDown(LoginDTO loginDTO) {
 		return sqlSession.update("login.mcountDown",loginDTO);
+	}
+
+	public int join(MemberDTO dto) {
+		return sqlSession.insert("login.join", dto);
+	}
+
+	public int idCheck(String id) {
+		return sqlSession.selectOne("login.idCheck",id);
+	}
+	
+	public int emailCheck(String email) {
+		return sqlSession.selectOne("login.emailCheck",email);
 	}
 
 }

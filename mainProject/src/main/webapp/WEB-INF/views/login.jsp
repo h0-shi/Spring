@@ -43,6 +43,7 @@
 <!-- xeicon -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <style type="text/css">
 body{
 	background-image: url('./img/blueBackground.jpg');
@@ -128,8 +129,8 @@ function join(){
 	alert("회원가입은 아직 구현되지 않았네요~");
 }
 function guest(){
-	document.getElementById('id').value = "test";
-	document.getElementById('pw').value = "12345";
+	document.getElementById('id').value = "guest";
+	document.getElementById('pw').value = "guest";
 	document.getElementById('loginForm').submit();
 	
 	//alert("임시 계정은 [ id : test / pw : 12345 ] 입니다.");
@@ -162,7 +163,7 @@ function guest(){
 						<div>
 							<div class="links">
 								<a href="javascript:void(0)" onclick="guest()" class="guestLink">게스트 로그인&ensp;</a>
-								<a href="javascript:void(0)" onclick="join()" class="joinLink">회원가입</a>
+								<a href="./join" class="joinLink">회원가입</a>
 							</div>
 						</div>
 						<div class="">
