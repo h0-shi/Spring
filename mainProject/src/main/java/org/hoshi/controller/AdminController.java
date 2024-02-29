@@ -26,5 +26,9 @@ public class AdminController {
 	public String login() {
 		return "admin/login";
 	}
+	@GetMapping("/adminBoard")
+	public String adminBoard() {
+		return "admin/adminBoard";
+	}
 
 }

@@ -4,6 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<!-- Custom styles for this template-->
+   <link href="css/sb-admin-2.min.css" rel="stylesheet">
 <!-- Google fonts-->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
@@ -58,7 +62,7 @@ body{
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">게시판 관리:</h6>
-                        <a class="collapse-item" href="buttons">게시글 관리</a>
+                        <a class="collapse-item" href="adminBoard">게시글 관리</a>
                         <a class="collapse-item" href="cards">댓글 관리</a>
                     </div>
                 </div>
