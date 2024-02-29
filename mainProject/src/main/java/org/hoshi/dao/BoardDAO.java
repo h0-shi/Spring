@@ -4,14 +4,16 @@ import java.util.List;
 
 import org.hoshi.dto.BoardDTO;
 import org.hoshi.dto.CommentDTO;
+import org.hoshi.dto.SearchDTO;
 import org.hoshi.dto.WriteDTO;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class BoardDAO extends AbstractDAO {
 	
-	public List<BoardDTO> boardList(int pageNo){
-		return sqlSession.selectList("board.boardList", pageNo);
+	public List<BoardDTO> boardList(SearchDTO searchDTO){
+		System.out.println(searchDTO.getSearch()+"--------------------*********************");
+		return sqlSession.selectList("board.boardList", searchDTO);
 	}
 
 	public BoardDTO detail(int no) {
@@ -34,8 +36,8 @@ public class BoardDAO extends AbstractDAO {
 		return sqlSession.update("board.postDel",dto);
 	}
 
-	public int totalRecordCount() {
-		return sqlSession.selectOne("board.totalRecordCount");
+	public int totalRecordCount(String search) {
+		return sqlSession.selectOne("board.totalRecordCount", search);
 	}
 	
 	public int deleteComment(CommentDTO dto) {

@@ -24,11 +24,5 @@
 		INSERT INTO member (mid, mpw, mname, memail) VALUES(#{mid}, HEX(AES_ENCRYPT(#{mpw},'Daiso')) , #{mname}, #{memail})
 	</insert>
 	
-	<select id="idCheck" parameterType="String" resultType="Integer">
-		SELECT COUNT(*) FROM member WHERE mid=#{id}
-	</select>
-	
-	<select id="emailCheck" parameterType="String" resultType="Integer">
-		SELECT COUNT(*) FROM member WHERE memail=#{email}
-	</select>
+
 </mapper>

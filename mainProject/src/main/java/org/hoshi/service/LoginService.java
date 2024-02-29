@@ -1,6 +1,7 @@
 package org.hoshi.service;
 
 import org.hoshi.dao.LoginDAO;
+import org.hoshi.dao.RestDAO;
 import org.hoshi.dto.LoginDTO;
 import org.hoshi.dto.MemberDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,9 @@ public class LoginService extends AbstractService {
 	
 	@Autowired
 	private LoginDAO loginDAO;
+	
+	@Autowired
+	private RestDAO restDAO;
 	
 	public LoginDTO login(LoginDTO dto) {
 		return loginDAO.login(dto);
@@ -29,11 +33,11 @@ public class LoginService extends AbstractService {
 	}
 
 	public int idCheck(String id) {
-		return loginDAO.idCheck(id);
+		return restDAO.idCheck(id);
 	}
 	
 	public int emailCheck(String email) {
-		return loginDAO.emailCheck(email);
+		return restDAO.emailCheck(email);
 	}
 
 }

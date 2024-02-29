@@ -46,11 +46,12 @@ strong{
 	color: skyblue;
 	text-shadow: 1px 1px black;
 }
-.arrows{
-}
 table{
 	width: 100%;
 }
 .writeBtn{
 	margin-top: 10px;
+}
+.catego{
+	width: 20%;
 }

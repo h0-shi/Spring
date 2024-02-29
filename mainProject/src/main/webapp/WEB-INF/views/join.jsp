@@ -170,29 +170,54 @@ input:focus {
 	text-shadow: 0.5px 0.5px black;
 	float: right;
 	margin-right: 10px;
-	margin-top: 5px;	
+	margin-top: 5px;
+	margin-bottom: -10px;	
+	font-size: smaller;
 }
 </style>
 <script type="text/javascript">
 $(function(){
 	
-	let idCheckBool = false;
-	let emailCheckBool = false;
-	let pwCheckBool = false;
+	let idBool = false;
+	let emailBool = false;
+	let pwBool = false;
+	let nameBool= false;
 	
+	$('#id').keyup(function(){
+		$('#idCheck').text("중복검사");
+		idBool = false;
+	});
+	
+	$('#email').keyup(function(){
+		emailBool = false;
+	});
 	
 	$('#pw2').keyup(function(){
 			let span = $('.pwCheck');
 		if( $('#pw2').val().length !=0 && $('#pw1').val()==$('#pw2').val() ){
 			span.text("암호가 일치합니다.");
 			span.css("color","green");
-			pwCheckBool = true;
+			pwBool = true;
 		} else {
 			span.text("암호가 일치하지 않습니다.");
 			span.css("color","red");
-			pwCheckBool = false;
+			pwBool = false;
 		}
 	});
+	
+	$('#pw1').keyup(function(){
+			let span = $('.pwCheck');
+		if( $('#pw2').val().length !=0 && $('#pw1').val()==$('#pw2').val() ){
+			span.text("암호가 일치합니다.");
+			span.css("color","green");
+			pwBool = true;
+		} else {
+			span.text("암호가 일치하지 않습니다.");
+			span.css("color","red");
+			pwBool = false;
+		}
+	});
+	
 	
 	$('#idCheck').click(function(){
 		let id = $('#id').val();
@@ -205,17 +230,20 @@ $(function(){
 				success : function(result){
 					if(result==0){
 						alert("사용 가능한 ID입니다.");	
-						idCheckBool = true;
+						$('#idCheck').text("멋진 ID네요! 👍");
+						idBool = true;
 					} else {
 						alert("이미 사용중인 ID입니다.");
-						idCheckBool = false;
+						idBool = false;
 					}
 				},
 				error: function(request, status, error){ //통신오류
+					idBool = false;
 					alert("에러 발생");
 				}
 			});
 		} else {
+			idCheckBool = false;
 			alert("ID를 입력해주세요");
 		}
 	});
@@ -233,40 +261,63 @@ $(function(){
 				data : {'email':email},
 				success : function(result){
 					if(result==0){
+						emailBool = true;
 						alert("사용 가능한 email입니다.");	
+						$('#emailCheck').text("멋지네요! 👍");
 					} else {
+						emailBool = false;
 						alert("이미 사용중인 email입니다.");
 					}
 				},
 				error: function(request, status, error){ //통신오류
+					emailBool = false;
 					alert("에러 발생");
 				}
 			});
 		} else {
+			emailBool = false;
 			alert("이메일 형식을 확인해주세요.");
 		}
 	});
 	
 	$('#join').click(function(){
-		let id = $('#id').val();		
-		let pw1 = $('#pw1').val();		
-		let pw2 = $('#pw2').val();		
-		let name = $('#name').val();		
-		let email = $('#email').val();		
-		
-		
-		let loginForm = $('<form></form>');
-		loginForm.attr('name','login');
-		loginForm.attr('method','post');
-		loginForm.attr('action','./join');
-		
-		loginForm.append($('<input>', {'type':'hidden', 'name':'mid', 'value':id}) );
-		loginForm.append($('<input>', {'type':'hidden', 'name':'mpw', 'value':pw1}) );
-		loginForm.append($('<input>', {'type':'hidden', 'name':'mname', 'value':name}) );
-		loginForm.append($('<input>', {'type':'hidden', 'name':'memail', 'value':email}) );
-		
-		loginForm.appendTo('body');
-		loginForm.submit();
+		if($('#name').val().length > 0){
+			nameBool=true;
+		}
+		if(idBool==true&&pwBool==true&&emailBool==true&&nameBool==true){
+			let id = $('#id').val();		
+			let pw1 = $('#pw1').val();		
+			let pw2 = $('#pw2').val();		
+			let name = $('#name').val();		
+			let email = $('#email').val();		
+			
+			let loginForm = $('<form></form>');
+			loginForm.attr('name','login');
+			loginForm.attr('method','post');
+			loginForm.attr('action','./join');
+			
+			loginForm.append($('<input>', {'type':'hidden', 'name':'mid', 'value':id}) );
+			loginForm.append($('<input>', {'type':'hidden', 'name':'mpw', 'value':pw1}) );
+			loginForm.append($('<input>', {'type':'hidden', 'name':'mname', 'value':name}) );
+			loginForm.append($('<input>', {'type':'hidden', 'name':'memail', 'value':email}) );
+			
+			loginForm.appendTo('body');
+			loginForm.submit();
+		} else if(idBool==false){
+			alert("ID 중복체크가 필요합니다.");
+			$('#id').focus();
+		} else if(pwBool==false){
+			alert("패스워드를 확인해주세요");
+			$('#pw1').focus();
+		} else if(emailBool==false){
+			alert("email 중복체크가 필요합니다");
+			$('#email').focus();
+		} else if(nameBool==false){
+			alert("이름을 입력해주세요");
+			$('#name').focus();
+		} else {
+			alert("입력정보를 확인해주세요");
+		}
 	});
 });
 </script>

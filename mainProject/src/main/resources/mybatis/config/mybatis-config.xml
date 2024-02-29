@@ -12,5 +12,6 @@
   		<typeAlias type="org.hoshi.dto.GalleryDTO" alias="galleryDTO"/>
   		<typeAlias type="org.hoshi.dto.NoticeDTO" alias="noticeDTO"/>
   		<typeAlias type="org.hoshi.dto.MemberDTO" alias="memberDTO"/>
+  		<typeAlias type="org.hoshi.dto.SearchDTO" alias="searchDTO"/>
   	</typeAliases>
   </configuration>

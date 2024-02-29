@@ -14,4 +14,12 @@ public class RestDAO extends AbstractDAO {
 		sqlSession.update("rest.setKey", dto);
 	}
 	
+	public int idCheck(String id) {
+		return sqlSession.selectOne("rest.idCheck",id);
+	}
+	
+	public int emailCheck(String email) {
+		return sqlSession.selectOne("rest.emailCheck",email);
+	}
+	
 }

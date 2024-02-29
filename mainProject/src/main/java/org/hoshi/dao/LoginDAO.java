@@ -22,12 +22,4 @@ public class LoginDAO extends AbstractDAO {
 		return sqlSession.insert("login.join", dto);
 	}
 
-	public int idCheck(String id) {
-		return sqlSession.selectOne("login.idCheck",id);
-	}
-	
-	public int emailCheck(String email) {
-		return sqlSession.selectOne("login.emailCheck",email);
-	}
-
 }

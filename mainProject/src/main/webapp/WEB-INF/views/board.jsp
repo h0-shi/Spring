@@ -70,7 +70,7 @@
 	}
 	
 function linkPage(pageNo){
-	location.href = "/board?pageNo="+pageNo;
+	location.href = "/board?search=${search}&pageNo="+pageNo;
 }	
 
 </script>
@@ -85,6 +85,12 @@ function linkPage(pageNo){
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">게시판</h2>
+                </div>
+                <div>
+	                <form action="./board">
+	                	<input type="text" class="catego" placeholder="검색" name="search">
+	                	<button type="submit">검색</button>
+	                </form>
                 </div>
                 <div class="row text-center">
                     <table class="table table-hover">

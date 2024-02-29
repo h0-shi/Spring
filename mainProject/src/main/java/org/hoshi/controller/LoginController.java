@@ -99,21 +99,8 @@ public class LoginController {
 	@PostMapping("/join")
 	public String join(MemberDTO dto) {
 		int result = loginService.join(dto);
-		System.out.println("진입");
-		System.out.println(dto.getMid());
-		System.out.println("진입");
 		return "redirect:/index";
 	}
-	
-	@PostMapping("/idCheck")
-	public @ResponseBody int idCheck(@RequestParam("id") String id) {
-		int result = loginService.idCheck(id);
-		return result;
-	}
-	@PostMapping("/emailCheck")
-	public @ResponseBody int emailCheck(@RequestParam("email") String email) {
-		int result = loginService.emailCheck(email);
-		return result;
-	}
+
 	 
 }
