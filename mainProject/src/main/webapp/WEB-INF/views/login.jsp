@@ -43,6 +43,7 @@
 <!-- xeicon -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <style type="text/css">
 body{
 	background-image: url('./img/blueBackground.jpg');
@@ -78,6 +79,7 @@ input:focus {
 	outline: none;
 }
 .inputLine{
+	width: 350px;
 	border-bottom: 1px solid white;
 }
 .icon{
@@ -116,10 +118,22 @@ input:focus {
 .links a:hover{
 	color: black;
 }
+#loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 </style>
 <script type="text/javascript">
 function join(){
 	alert("회원가입은 아직 구현되지 않았네요~");
+}
+function guest(){
+	document.getElementById('id').value = "guest";
+	document.getElementById('pw').value = "guest";
+	document.getElementById('loginForm').submit();
+	
+	//alert("임시 계정은 [ id : test / pw : 12345 ] 입니다.");
 }
 </script>
 </head>
@@ -131,7 +145,7 @@ function join(){
         <section class="page-section" id="login">
             <div class="d-flex justify-content-center">
                <div class="text-center">
-               		<form action="./login" method="post">
+               		<form action="./login" method="post" id="loginForm">
 						<img class="loginimg" alt="login" src="./img/login.png" width="250px;">
 					<div class="mb-3 row inputLine">
 						<label for="id" class="col-sm-3 col-form-label icon"><i class="xi-user-o"></i></label>
@@ -148,7 +162,8 @@ function join(){
 					<div class="mb-3 row">
 						<div>
 							<div class="links">
-								<a href="javascript:void(0)" onclick="join()">회원가입</a>
+								<a href="javascript:void(0)" onclick="guest()" class="guestLink">게스트 로그인&ensp;</a>
+								<a href="./join" class="joinLink">회원가입</a>
 							</div>
 						</div>
 						<div class="">

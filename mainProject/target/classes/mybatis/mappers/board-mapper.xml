@@ -15,13 +15,19 @@
   			<result column="cip" property="cip"/>
   		</resultMap>
   
-	  <select id="boardList" resultType="boardDTO" parameterType="Integer">
-	  	SELECT board_no, board_title, board_write as mname, board_date, board_count, comment FROM boardview LIMIT #{pageNo },10
+	  <select id="boardList" resultType="boardDTO" parameterType="searchDTO">
+	  	SELECT board_no, board_title, board_write as mname, board_date, board_count, comment FROM boardview
+	  	<where>
+		  	<if test="search != null">
+		  		board_title LIKE CONCAT('%',#{search},'%')
+		  	</if>
+	  	</where>
+	  	 LIMIT #{pageNo },10 
 	  </select>
 	  
 	  <select id="detail" resultType="boardDTO" parameterType="Integer">
 	  	SELECT b.board_no, b.board_title, b.board_content, b.mno, b.board_date, b.board_ip, b.board_del, m.mname, m.mid, (SELECT COUNT(*) FROM comment c WHERE c.board_no = b.board_no AND c.cdel='1') AS comment
-	  	FROM board b JOIN member m ON b.mno=m.mno WHERE b.board_no = #{no } AND board_del='1'
+	  	FROM board b JOIN member m ON b.mno=m.mno WHERE b.board_no = #{no} AND board_del='1'
 	  </select>
 	  
 	  <insert id="write" parameterType="writeDTO">
@@ -33,7 +39,7 @@
 	  </insert>
 	  
 	  <insert id="commentWrite" parameterType="commentDTO">
-	  	INSERT INTO comment (board_no, ccomment, mno, cip) VALUES (#{no }, #{comment}, (SELECT mno FROM member WHERE mid = #{mid }),#{cip })
+	  	INSERT INTO comment (board_no, ccomment, mno, cip) VALUES (#{no}, #{comment}, (SELECT mno FROM member WHERE mid = #{mid }),#{cip })
 	  </insert>
 	  
 	  <select id="commentsList" resultMap="commentDTOmap" parameterType ="Integer">
@@ -46,8 +52,13 @@
 	  ]]>
 	  </update>
 	  
-	  <select id="totalRecordCount" resultType="Integer">
-	  	SELECT COUNT(*) FROM board WHERE board_del = '1'
+	
+	  <select id="totalRecordCount" resultType="Integer" parameterType="String">
+	  	SELECT COUNT(*) FROM board WHERE board_del = '1' 
+	  	<if test="value != null">
+	  		AND board_title LIKE CONCAT('%',#{value},'%') 
+	  		OR board_content LIKE CONCAT('%',#{value},'%')
+	  	</if>
 	  </select>
 	  
 	  <update id="commentDelete" parameterType="commentDTO">

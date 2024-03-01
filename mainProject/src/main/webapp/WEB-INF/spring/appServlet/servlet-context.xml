@@ -21,6 +21,9 @@
 	<resources mapping="/css/**" location="/resources/css/" />
 	<resources mapping="/js/**" location="/resources/js/" />
 	<resources mapping="/img/**" location="/resources/img/" />
+	<resources mapping="/upfile/**" location="/resources/upfile/" />
+	<resources mapping="/thumbnail/**" location="/resources/thumbnail/" />
+	<resources mapping="/admin/**" location="/resources/admin/"/>
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
@@ -30,10 +33,8 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	<context:component-scan
-		base-package="org.hoshi.*" />
-	<beans:import resource="classpath:/spring/db-context.xml" />
-
+	<context:component-scan	base-package="org.hoshi.*" />
+	<beans:import resource="classpath:/spring/*-context.xml" />
 
 
 </beans:beans>

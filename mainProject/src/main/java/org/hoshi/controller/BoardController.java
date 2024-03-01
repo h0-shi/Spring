@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.hoshi.dto.BoardDTO;
 import org.hoshi.dto.CommentDTO;
+import org.hoshi.dto.SearchDTO;
 import org.hoshi.dto.WriteDTO;
 import org.hoshi.service.BoardService;
 import org.hoshi.util.Util;
@@ -35,13 +36,15 @@ public class BoardController {
 	}
 	
 	@GetMapping("/board")
-	public String board(@RequestParam(value="pageNo", defaultValue="1", required=false) String no, Model model) {
+	public String board(@RequestParam(value="pageNo", defaultValue="1", required=false) String pageNo
+			, @RequestParam(value = "search", required = false) String search
+			, Model model) {
 		int currentPageNo = 1;
-		if(util.str2Int(no)>0) { //여기 수정이 필요하다.숫자가 아니면1, 숫자면 그 숫자로.
-			currentPageNo = Integer.parseInt(no);
+		if(util.str2Int(pageNo)>0) { //여기 수정이 필요하다.숫자가 아니면1, 숫자면 그 숫자로.
+			currentPageNo = Integer.parseInt(pageNo);
 		}
 		//전체 글 수 totalCount
-		int totalRecordCount = boardService.totalRecordCount();
+		int totalRecordCount = boardService.totalRecordCount(search);
 		//Pagination
 		PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(currentPageNo);//현재 페이지 번호
@@ -49,10 +52,17 @@ public class BoardController {
 		paginationInfo.setPageSize(10);//페이징 리스트 사이즈
 		paginationInfo.setTotalRecordCount(totalRecordCount);//전체 게시글
 		
-		List<BoardDTO> list = boardService.boardList(paginationInfo.getFirstRecordIndex());
+		SearchDTO searchDTO = new SearchDTO();
+		searchDTO.setPageNo(paginationInfo.getFirstRecordIndex());
+		searchDTO.setSearch(search);
+		
+		List<BoardDTO> list = boardService.boardList(searchDTO);
+		
 		//getFirstRecordIndex == 첫번째 글 가져오는거
 		model.addAttribute("list", list);
+		model.addAttribute("search", search);
 		//페이징 관련 정보가 있는 PaginationInfo 객체를 모델에 반드시 넣어준다.
+		model.addAttribute("pageNo", currentPageNo);
 		model.addAttribute("paginationInfo",paginationInfo);
 		return "board";
 	}
@@ -89,7 +99,7 @@ public class BoardController {
 		}
 	}
 	
-	@GetMapping("write")
+	@GetMapping("/write")
 	public String write() {
 		return "redirect:/login?error=2048";
 	}

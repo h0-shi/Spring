@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -9,35 +10,6 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>게시판</title>
-<!-- Favicon-->
-	<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-	<link rel="shortcut icon" type="image/x-icon" href="assets/favicon.ico" />
-	<link rel="apple-touch-icon" sizes="57x57" href="assets/apple-icon-57x57.png">
-	<link rel="apple-touch-icon" sizes="60x60" href="assets/apple-icon-60x60.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="assets/apple-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="76x76" href="assets/apple-icon-76x76.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="assets/apple-icon-114x114.png">
-	<link rel="apple-touch-icon" sizes="120x120" href="assets/apple-icon-120x120.png">
-	<link rel="apple-touch-icon" sizes="144x144" href="assets/apple-icon-144x144.png">
-	<link rel="apple-touch-icon" sizes="152x152" href="assets/apple-icon-152x152.png">
-	<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-icon-180x180.png">
-	<link rel="icon" type="image/png" sizes="192x192"  href="assets/android-icon-192x192.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="96x96" href="assets/favicon-96x96.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
-	<link rel="manifest" href="assets/manifest.json">
-	<meta name="msapplication-TileColor" content="#ffffff">
-	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-	<meta name="theme-color" content="#ffffff">
-	<!-- Font Awesome icons (free version)-->
-	<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-	<!-- Google fonts-->
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
-	
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Gowun+Dodum&family=Nanum+Gothic&family=Nanum+Myeongjo&display=swap" rel="stylesheet">>
 	<!-- Core theme CSS (includes Bootstrap)-->
 	<link href="css/styles.css" rel="stylesheet" />
 	<link href="css/board.css" rel="stylesheet" />
@@ -98,7 +70,7 @@
 	}
 	
 function linkPage(pageNo){
-	location.href = "/board?pageNo="+pageNo;
+	location.href = "/board?search=${search}&pageNo="+pageNo;
 }	
 
 </script>
@@ -107,12 +79,18 @@ function linkPage(pageNo){
         <!-- Navigation-->
         <%-- <c:import url="menu.jsp"/> --%>
         <%@ include file="menu.jsp" %>
-        
+        <%@page import ="java.time.*" %>
         <!-- 게시판 -->
         <section class="page-section" id="services">
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">게시판</h2>
+                </div>
+                <div>
+	                <form action="./board">
+	                	<input type="text" class="catego" placeholder="검색" name="search">
+	                	<button type="submit">검색</button>
+	                </form>
                 </div>
                 <div class="row text-center">
                     <table class="table table-hover">
@@ -127,14 +105,24 @@ function linkPage(pageNo){
 						</thead>
 						<tbody>
 							<c:forEach items="${list }" var="row">
+
+							<c:set var="today"><fmt:formatDate value="<%=new java.util.Date()%>" pattern="yy-MM-dd" /></c:set>
+							<fmt:parseDate var="dateString" value="${row.board_date }" pattern="yyyy-MM-dd HH:mm:ss" />
+							 
 							<tr>
 								<td onclick="detail(${row.board_no})" class="w1">${row.board_no }</td>
-								<td class="title" ><a href='/detail?no=${row.board_no }'>${row.board_title }
-								<c:if test="${row.comment ne 0}"><span class="badge">${row.comment }</span></c:if></a></td>
-								<td class="w2">${row.mname }</td>
-								<td class="w1">${row.board_date }</td>
+								<td class="title" >
+									<c:if test="${LocalDate.now() lt row.board_date}"><span class="badge text-bg-info">N</span></c:if>
+									<a href='/detail?no=${row.board_no }'>${row.board_title } 
+									<c:if test="${row.comment ne 0}"><span class="comments"> [${row.comment }]</span></c:if></a></td>
+								<td class="w2">${row.mname } </td>
+								<td class="w1">
+									<c:if test="${LocalDate.now() lt row.board_date}"><fmt:formatDate  value="${dateString }" pattern="HH:mm" /></c:if>
+									<c:if test="${LocalDate.now() gt row.board_date}"><fmt:formatDate  value="${dateString }" pattern="YYYY-MM-dd" /></c:if>			
+								</td>
 								<td class="w1">${row.board_count }</td>
 							</tr>
+							
 							</c:forEach>
 						</tbody>
 					</table>

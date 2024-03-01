@@ -1,16 +1,11 @@
 package org.hoshi.dao;
 
-import org.apache.ibatis.session.SqlSession;
 import org.hoshi.dto.LoginDTO;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.hoshi.dto.MemberDTO;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class LoginDAO {
-	
-	@Autowired
-	private SqlSession sqlSession;
-	
+public class LoginDAO extends AbstractDAO {
 	public LoginDTO login(LoginDTO dto) {
 		return sqlSession.selectOne("login.login",dto);
 	}
@@ -21,6 +16,10 @@ public class LoginDAO {
 
 	public int mcountDown(LoginDTO loginDTO) {
 		return sqlSession.update("login.mcountDown",loginDTO);
+	}
+
+	public int join(MemberDTO dto) {
+		return sqlSession.insert("login.join", dto);
 	}
 
 }

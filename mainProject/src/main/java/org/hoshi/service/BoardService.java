@@ -2,27 +2,22 @@ package org.hoshi.service;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.hoshi.dao.BoardDAO;
 import org.hoshi.dto.BoardDTO;
 import org.hoshi.dto.CommentDTO;
+import org.hoshi.dto.SearchDTO;
 import org.hoshi.dto.WriteDTO;
-import org.hoshi.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BoardService {
+public class BoardService extends AbstractService{
 	
 	@Autowired
 	private BoardDAO boardDAO;
-	@Autowired
-	private Util util;
 	
-	public List<BoardDTO> boardList(int pageNo){
-		return boardDAO.boardList(pageNo);
+	public List<BoardDTO> boardList(SearchDTO searchDTO){
+		return boardDAO.boardList(searchDTO);
 	}
 
 	public BoardDTO detail(int no) {
@@ -64,8 +59,8 @@ public class BoardService {
 		return boardDAO.postDel(dto);
 	}
 
-	public int totalRecordCount() {
-		return boardDAO.totalRecordCount();
+	public int totalRecordCount(String search) {
+		return boardDAO.totalRecordCount(search);
 	}
 	
 	public int deleteComment(int no, int cno) {

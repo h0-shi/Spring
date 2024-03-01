@@ -4,7 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.mail.EmailException;
+import org.apache.ibatis.annotations.Param;
 import org.hoshi.dto.LoginDTO;
+import org.hoshi.dto.MemberDTO;
 import org.hoshi.service.LoginService;
 import org.hoshi.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
@@ -81,4 +85,22 @@ public class LoginController {
 		return "redirect:/login?error=error";
 	}
 	
+	/*
+	 * 아이디 -> 중복검사
+	 * 이메일 -> 중복검사
+	 * 비밀번호 / 비밀번호 확인
+	 * 닉네임
+	 */
+	@GetMapping("/join")
+	public String join() {
+		return "join";
+	}
+	
+	@PostMapping("/join")
+	public String join(MemberDTO dto) {
+		int result = loginService.join(dto);
+		return "redirect:/index";
+	}
+
+	 
 }

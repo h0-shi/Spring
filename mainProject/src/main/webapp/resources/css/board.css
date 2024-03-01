@@ -24,8 +24,10 @@ body{
 	color: skyblue;
 	text-shadow: 0.3px 0.3px blue;
 }
-.badge{
-	background-color: skyblue;
+.comments{
+	color:red;
+	font-size: smaller;
+	font-weight: bold;
 }
 .vh-500{
 	height: 500px;
@@ -44,11 +46,12 @@ strong{
 	color: skyblue;
 	text-shadow: 1px 1px black;
 }
-.arrows{
-}
 table{
 	width: 100%;
 }
 .writeBtn{
 	margin-top: 10px;
+}
+.catego{
+	width: 20%;
 }
