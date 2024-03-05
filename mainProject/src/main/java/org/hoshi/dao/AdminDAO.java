@@ -25,4 +25,8 @@ public class AdminDAO extends AbstractDAO{
 	public int delStatus(BoardDTO boardDTO) {
 		return sqlSession.update("admin.delStatus", boardDTO);
 	}
+
+	public BoardDTO detail(int no) {
+		return sqlSession.selectOne("admin.detail", no);
+	}
 }

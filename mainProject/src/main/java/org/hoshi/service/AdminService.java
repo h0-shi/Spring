@@ -12,4 +12,6 @@ public interface AdminService {
 	public int totalRecordCount(SearchDTO searchDTO);
 	
 	public int delStatus(BoardDTO boardDTO);
+
+	public BoardDTO detail(int no);
 }

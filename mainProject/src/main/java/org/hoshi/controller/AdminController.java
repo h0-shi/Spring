@@ -78,5 +78,14 @@ public class AdminController {
 		model.addAttribute("perPage",perPage);
 		return "admin/board";
 	}
+	
+	@GetMapping("/detail")
+	public String detail(@RequestParam("no") String no,Model model) {
+		
+		BoardDTO detail = adminService.detail(util.str2Int(no));
+		model.addAttribute("detail",detail);
+		
+		return "/admin/detail";
+	}
 
 }

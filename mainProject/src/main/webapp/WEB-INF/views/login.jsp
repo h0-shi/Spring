@@ -118,7 +118,13 @@ input:focus {
 .links a:hover{
 	color: black;
 }
+.idCheckbox{
+	color: white;
+	float: left;
+	margin-left: 10px;	
+}
 #loginForm {
+	width:410px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -136,7 +142,83 @@ function guest(){
 	//alert("임시 계정은 [ id : test / pw : 12345 ] 입니다.");
 }
 </script>
-</head>
+<script type="text/javascript">
+$(function(){
+	//cookie가져오기 = getCookie
+	let userInputId = getCookie('userInputId');
+	let setCookieYN = getCookie('setCookieYN');
+	
+	if(setCookieYN == 'Y'){
+        $('#id').val(userInputId);
+		$('#saveID').prop("checked", true);    		
+	}      	
+	
+	//alert("구동하려면 제이쿼리가 필요합니다");
+	//아이디칸, pw칸 검사
+	$('.submit').click(function(){
+		let id = $('#id').val();
+		let pw = $('#pw').val();
+		if(id == '' || id.length < 3){
+			alert('아이디를 확인해주세요');
+			$('#id').focus();
+			return false;
+		}
+		if(pw == '' || pw.length < 3){
+			alert('비밀번호를 확인해주세요');
+			$('#pw').focus();
+			return false;
+		}
+		//쿠키에 id저장하기
+		//if문으로 사용자가 아이디 저장 눌렀어?
+		if($('#saveID').is(':checked')){
+			//ID불러와서 저장하기
+			setCookie('setCookieYN', 'Y', 60); // 아이디 저장을 클릭했는지 저장합니다.
+			setCookie("userInputId", id, 60);  //쿠키 저장하는 함수
+		} else {
+			//사용자가 id 저장을 누르지 않음. = 저장 안 함.
+			delCookie("userInputId");
+			delCookie("setCookieYN");
+		}
+				
+		//$('#loginForm').submit();//form 실행
+	});
+});
+
+	//쿠키 저장하는 함수 (쿠키이름, 값, 기한)
+	function setCookie(cookieName, value, exdays){
+		//오늘 날짜 뽑기
+		let date = new Date();
+		date.setDate(date.getDate() + exdays);
+		let value2 = escape(value) + "; expires=" + date.toGMTString();
+		//escape() 아스키문자에 해당하지 않는 문자들은 모두 유니코드 형식으로 변환
+		document.cookie = cookieName + "=" + value2;
+	}
+	
+	//쿠키값 가져오기(가져올 쿠키 이름)
+	function getCookie(cookieName){
+		let x, y;
+		let val = document.cookie.split(';');
+		for(let i = 0; i < val.length; i++){
+			x = val[i].substr(0, val[i].indexOf('='));//저장한 쿠키이름
+			y = val[i].substr(val[i].indexOf('=') + 1);//쿠키 값
+			x = x.replace(/^\s+|\s+$/g, ''); // 앞과 뒤의 공백 제거하기
+			if(x == cookieName){
+				return y;
+			}
+		}
+	}
+	
+	//삭제하기 (삭제 할 쿠키 이름)
+	function delCookie(cookieName){
+		/* 
+		let date = new Date();
+		date.setDate(date.getDate()-1);
+		document.cookie = cookieName + "=; expires="+date.toGMTString(); 
+		*/
+		document.cookie = cookieName + "=; max-age=0";
+	}
+	
+</script></head>
     <body id="page-top">
         <!-- Navigation-->
         <c:import url="menu.jsp"/>
@@ -150,18 +232,22 @@ function guest(){
 					<div class="mb-3 row inputLine">
 						<label for="id" class="col-sm-3 col-form-label icon"><i class="xi-user-o"></i></label>
 						<div class="col-sm-8 inputArea">
-							<input type="text" class="idIn" id="id" placeholder="아이디를 입력하세요" name="id">
+							<input type="text" class="idIn" id="id" placeholder="아이디를 입력하세요" name="id" required>
 						</div>
 					</div>
 					<div class="mb-3 row inputLine">
 						<label for="pw" class="col-sm-3 col-form-label icon"><i class="xi-lock-o"></i></label>
 						<div class="col-sm-8 inputArea">
-							<input type="password" class="pwIn" id="pw" placeholder="암호를 입력하세요" name="pw">
+							<input type="password" class="pwIn" id="pw" placeholder="암호를 입력하세요" name="pw" required>
 						</div>
 					</div>
 					<div class="mb-3 row">
 						<div>
 							<div class="links">
+								<span class="idCheckbox">
+									<input type="checkbox" class="saveID" id="saveID">
+									<label for="saveID">아이디 저장</label>
+								</span>
 								<a href="javascript:void(0)" onclick="guest()" class="guestLink">게스트 로그인&ensp;</a>
 								<a href="./join" class="joinLink">회원가입</a>
 							</div>

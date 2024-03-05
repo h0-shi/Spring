@@ -14,7 +14,7 @@
 <script type="text/javascript">
 function linkPage(pageNo){
 	location.href = "./board?&pageNo="+pageNo+"&search=${search}&searchTitle=${searchTitle}";
-}	
+}
 $(function(){	
 	$("#perPage").change(function(){
 		location.href="./board?pageNo=${pageNo}&perPage="+$('#perPage').val();
@@ -106,6 +106,9 @@ $(function(){
 								<option value="3"
 								<c:if test="${searchTitle eq 3 }">selected="selected" </c:if>
 								>작성자</option>
+								<option value="4"
+								<c:if test="${searchTitle eq 4 }">selected="selected" </c:if>
+								>IP</option>
 							</select>
 							<input type="text" name="search" id="search" class="form-control" value=${search }>
 							<button type="button" class="btn btn-secondary col-2" id="searchBtn" style="border-top-left-radius: 0px; border-bottom-left-radius: 0px; ">검색</button>
@@ -119,6 +122,7 @@ $(function(){
 								<th>제목</th>
 								<th>글쓴이</th>
 								<th>날짜</th>
+								<th>IP</th>
 								<th>읽음</th>
 								<th>게시상태</th>
 							</tr>
@@ -130,9 +134,10 @@ $(function(){
 							<fmt:parseDate var="dateString" value="${row.board_date }" pattern="yyyy-MM-dd HH:mm:ss" />
 							<tr <c:if test="${row.board_del eq 0 }">style="background-color:#CCCCCC"</c:if> class="line">
 								<td class="w1 bno">${row.board_no }</td>
-								<td class="title" >
+								<td class="title">
 									<c:if test="${LocalDate.now() lt row.board_date}"><span class="badge text-bg-info">N</span></c:if>
-									<a href='/detail?no=${row.board_no }'>${row.board_title } 
+									<a href='./detail?no=${row.board_no }' target="_blank">
+									${row.board_title } 
 									<c:if test="${row.comment ne 0}"><span class="comments"> [${row.comment }]</span></c:if></a></td>
 								<td class="w2">
 									<a href="./board?searchTitle=3&search=${row.mname }">${row.mname }</a>
@@ -140,6 +145,7 @@ $(function(){
 								<td class="w1">
 									<fmt:formatDate  value="${dateString }" pattern="YY-MM-dd HH:mm" />
 								</td>
+								<td class="w1 ip"><a href="./board?searchTitle=4&search=${row.board_ip }">${row.board_ip }</a></td>
 								<td class="w1">${row.board_count }</td>
 								<td class="w1 del" >
 									<c:if test="${row.board_del eq 1}">

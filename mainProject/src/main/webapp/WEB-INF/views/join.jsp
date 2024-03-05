@@ -334,7 +334,7 @@ $(function(){
 					<div class="inputLine">
 						<span class="icon"><i class="xi-user-o"></i></span>
 						<div class="inputArea">
-							<input type="text" class="idIn" id="id" placeholder="아이디를 입력하세요" name="id">
+							<input type="text" class="idIn" id="id" placeholder="아이디를 입력하세요" name="id" required>
 						</div>
 							<button class="check" type="button" id="idCheck">중복 검사</button>
 					</div>
@@ -342,12 +342,12 @@ $(function(){
 						<div class="pwInput1">
 							<span class="icon"><i class="xi-lock-o"></i></span>
 							<div class="pwArea">
-								<input type="password" class="pwIn" id="pw1" placeholder="암호를 입력하세요" name="pw1">
+								<input type="password" class="pwIn" id="pw1" placeholder="암호를 입력하세요" name="pw1" required>
 							</div>
 						</div>
 						<div class="pwInput2">
 							<div class="pwArea2">
-								<input type="password" class="pwIn" id="pw2" placeholder="암호를 입력하세요" name="pw2">
+								<input type="password" class="pwIn" id="pw2" placeholder="암호를 입력하세요" name="pw2" required>
 							</div>
 						</div>
 						<span class="pwCheck"></span>
@@ -355,14 +355,14 @@ $(function(){
 					<div class="inputLine">
 						<span class="icon"><i class="xi-mail-o"></i></span>
 						<div class="inputArea">
-							<input type="email" class="idIn" id="email" placeholder="이메일을 입력하세요" name="email" >
+							<input type="email" class="idIn" id="email" placeholder="이메일을 입력하세요" name="email" required >
 						</div>
 							<button class="check" type="button" id="emailCheck">중복 검사</button>
 					</div>
 					<div class="inputLine">
 						<span class="icon"><i class="xi-emoticon-cool-o"></i></span>
 						<div class="inputArea">
-							<input type="text" class="pwIn" id="name" placeholder="이름을 입력하세요" name="name">
+							<input type="text" class="pwIn" id="name" placeholder="이름을 입력하세요" name="name" required>
 						</div>
 					</div>
 					<div class="mb-3 row">

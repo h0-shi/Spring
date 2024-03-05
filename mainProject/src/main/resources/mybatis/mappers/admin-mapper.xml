@@ -17,6 +17,9 @@
 		<if test="searchTitle == 3">
 			mname LIKE CONCAT('%', #{search} ,'%')
 		</if>
+		<if test="searchTitle == 4">
+			board_ip = #{search}
+		</if>
 	</where>
 	ORDER BY board_date DESC LIMIT #{pageNo},#{recordCountPerPage}
 	</select>
@@ -33,11 +36,18 @@
 			<if test="searchTitle == 3">
 				mname LIKE CONCAT('%', #{search} ,'%')
 			</if>
+			<if test="searchTitle == 4">
+				board_ip = #{search}
+			</if>
 		</where>
 	</select>
 	
 	<update id="delStatus" parameterType="boardDTO">
 		UPDATE board SET board_del = #{board_del} WHERE board_no = #{board_no}
 	</update>
+	
+	<select id="detail" parameterType="Integer" resultType="boardDTO">
+		SELECT b.Board_no, b.board_title, b.board_content, m.mname, b.board_date, b.board_ip, b.board_del FROM board b JOIN member m ON b.mno=m.mno WHERE b.board_no = #{no}  
+	</select>
 		
 </mapper>
