@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>자유게시판</title>
+
+<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+<!-- Google fonts-->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Gowun+Dodum&family=Nanum+Gothic&family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+<style type="text/css">
+body{
+	font-family: "Gowun Dodum", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+}
+table{
+	width: 80%;
+	text-align: center;
+}
+.w1{
+	width: 10%;
+}
+.title{
+	width: 50%;
+	text-align: left;
+}
+.main{
+	padding-top: 90px;
+	align-items: center;
+}
+</style>
+</head>
+<body>
+	<th:block th:insert="~{menu.html :: head}">	</th:block>
+	<th:block th:insert="~{menu.html :: menu}">	</th:block>
+	
+	<header>
+		<div class="container">
+			<div class="main">
+				<table>
+					<thead>
+						<tr>
+							<th>글 번호</th>
+							<th>제목</th>
+							<th>작성자</th>
+							<th>작성일</th>
+							<th>조회수</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="row:${fb}">
+							<td class="w1">[[${row.mtno }]]</td>
+							<td class="title">[[${row.mttitle }]]</td>
+							<td class="t1">[[${row.mname }]]</td>
+							<td class="t2">[[${row.mtdate }]]</td>
+							<td class="t1">[[${row.mtread }]]</td>
+						</tr>
+					</tbody>
+				</table>
+				<a th:href="@{/write(mtcate=${fb[0].mtcate})}">글쓰기</a>	
+			</div>
+		</div>
+	</header>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoshi.web.dao.IndexDAO">
+	
+	<select id="freeBoard" resultType="BoardDTO">
+		SELECT b.mtno, b.mttitle, b.mtdate, b.mtcate, b.mtread, m.mname FROM multiboard b JOIN member m ON m.mno = b.mno 
+	</select>	
+	
+</mapper>
