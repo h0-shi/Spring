@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>자유게시판</title>
+<title>공지사항</title>
 
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 
@@ -44,26 +44,23 @@ table{
 	
 	<div class="container">
 		<div class="main">
-			<span th:text="${#lists.size(fb)}"></span>
-			
 			<div th:if="${#lists.size(fb) le 0}">
 				<h1>출력 데이터 없음</h1>
 			</div>
 			<div th:unless="${#lists.size(fb) le 0}">
-				<h1>출력 데이터 있음</h1>
+				<h1 style="text-align:center;">공지사항</h1>
 				<div class="table">
 					<div class="row" th:each="row:${fb}">
 						<div class="col-1">[[${row.mtno}]]</div>
-						<div class="col-6" th:onclick="|location.href='@{/detail(no=${row.mtno})}'|">[[${row.mttitle }]]</div>
+						<div class="col-6 title" th:onclick="|location.href='@{/detail(no=${row.mtno})}'|">[[${row.mttitle }]]</div>
 						<div class="col-2">[[${row.mname }]]</div>
 						<div class="col-2">[[${row.mtdate }]]</div>
 						<div class="col-1">[[${row.mtread }]]</div>
 					</div>
 				</div>
 			</div>
-			
-			<button type="button" class="btn btn-primary" th:onclick="|location.href='@{/write(cate=${param.cate})}'|">글쓰기</button>
-				<button type="button" th:with="cate=${fb[0].mtcate}" class="btn btn-primary" th:onclick="|location.href='@{/write(cate=${cate})}'|">글쓰기</button>
+				<button type="button" class="btn btn-primary" th:onclick="|location.href='@{/write(cate=${param.cate})}|'">글쓰기</button>
+				<button type="button" th:with="cate=${fb[0].mtcate}" class="btn btn-primary" th:onclick="|location.href='@{/write(cate=${cate})}|'">글쓰기</button>
 			
 		</div>
 	</div>

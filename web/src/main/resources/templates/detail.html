@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>공지사항</title>
+
+<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+<!-- Google fonts-->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Gowun+Dodum&family=Nanum+Gothic&family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+<style type="text/css">
+.goBtn{
+	border-radius: 5px;
+	border: 1px solid black;
+}
+.writerInfo{
+	border-bottom: 1px solid #c0c0c0; 
+	border-top: 1px solid #c0c0c0;
+}
+.detailDate{
+	font-size: smaller;
+}
+h2{
+	font-family: "Gowun Dodum", sans-serif;
+}
+span a{
+	text-decoration: none;
+	font-size: smaller;
+	color : grey;
+}
+span a:hover{
+	color:black;
+}
+</style>
+<script type="text/javascript" th:inline="javascript">
+function del(){
+	let no = [[${detail.mtno}]];
+	let cate = [[${detail.mtcate}]];
+	
+	alert(cate);
+	
+	if(confirm("지울거야?")){
+	/* location.href="/delete?no="+no; */
+	
+	let form = document.createElement('form');
+	form.setAttribute('method','post');
+	form.setAttribute('action','/postDel');
+	
+	let input = document.createElement('input');
+	input.setAttribute('type','hidden');
+	input.setAttribute('name','no');
+	input.setAttribute('value',no);
+	
+	let cateIn = document.createElement('input');
+	cateIn.setAttribute('type','hidden');
+	cateIn.setAttribute('name','cate');
+	cateIn.setAttribute('value',cate);
+	
+	form.appendChild(input);
+	form.appendChild(cateIn);
+	document.body.appendChild(form);
+	form.submit();
+	}
+	
+}
+</script>
+</head>
+<body id="page-top">
+	<!-- Navigation-->
+	<th:block th:insert="~{menu.html :: head}">	</th:block>
+	<th:block th:insert="~{menu.html :: menu}">	</th:block>
+	
+	<!-- detail -->
+	<section class="page-section" id="detail">
+		<div class="container">
+			<div class="text-center">
+				<h2 class="section-heading text-uppercase">&ensp;</h2>
+			</div>
+			<div class="card mb-4" style="min-height: 500px;">
+				<div class="card-body">
+					<div class="h2 title">[[${detail.mttitle }]]</div>
+					<div class="h2 title">[[${detail.mtcate }]]</div>
+					<div class="row p-2 writerInfo">
+						<div class="col align-middle text-start">[[${detail.mname }]] &ensp;
+							<th:block th:if="${session.mname eq detail.mname}" th:with="no=${detail.mtno}" >
+								<span class="cEdit"><a href="javascript:void(0)" onclick="">수정&ensp;</a></span>
+								|
+								<span class="cDel"><a href="javascript:void(0)" onclick="del()">&ensp;삭제&ensp;</a></span>
+							</th:block>
+						</div>
+						<div class="col align-middle text-end detailDate">[[${detail.mtdate }]]</div>
+					</div>
+					<div class="mt-4 h-auto content">[[${detail.mtcontent }]]</div>
+				</div>
+			</div>
+		<button class="btn btn-danger btns" onclick="history.go('-1')">고시판으로</button>
+		<hr>
+		</div>
+	</section>
+</body>
+</html>

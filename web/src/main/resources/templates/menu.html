@@ -44,15 +44,22 @@
    <!-- Navigation-->
        <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
            <div class="container px-5">
-               <a class="navbar-brand fw-bold" href="#page-top">Start Bootstrap</a>
+               <a class="navbar-brand fw-bold" href="/index">Start Bootstrap</a>
                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                    Menu
                    <i class="bi-list"></i>
                </button>
                <div class="collapse navbar-collapse" id="navbarResponsive">
                    <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
-                       <li class="nav-item"><a class="nav-link me-lg-3" href="/freeboard">Features</a></li>
-                       <li class="nav-item"><a class="nav-link me-lg-3" href="#download">Download</a></li>
+                       <li class="nav-item"><a class="nav-link me-lg-3" href="/freeboard">게시판</a></li>
+                       <li class="nav-item"><a class="nav-link me-lg-3" href="/notice?cate=2">notice 2</a></li>
+                       <li class="nav-item"><a class="nav-link me-lg-3" href="/notice?cate=3">notice 3</a></li>
+                       <li class="nav-item"><a class="nav-link me-lg-3" href="/notice?cate=4">notice 4</a></li>
+                       <li class="nav-item"><a class="nav-link me-lg-3" href="/notice?cate=5">notice 5</a></li>
+                       
+                       <li class="nav-item"><a class="nav-link me-lg-3" href="/login" th:if="${session.mid eq null}">로그인</a></li>
+                       <li class="nav-item"><a class="nav-link me-lg-3" href="/myInfo" th:if="${session.mid ne null}">[[${session.mname}]]님</a></li>
+                       <li class="nav-item"><a class="nav-link me-lg-3" href="/logout" th:if="${session.mid ne null}">로그아웃</a></li>
                    </ul>
                    <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#feedbackModal">
                        <span class="d-flex align-items-center">
@@ -63,6 +70,16 @@
                </div>
            </div>
        </nav>
+       
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
        
 </th:block>
 </body>
