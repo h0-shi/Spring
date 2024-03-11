@@ -8,10 +8,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @Mapper
-public interface MemberDAO {
-
-	Map<String, Object> login(Map<String, Object> map);
-
-	List<Map<String, Object>> menu();
+public interface AdminDAO {
 	
+	public List<Map<String, Object>> menu();
+
+	public int menuInsert(Map<String, Object> map);
+
 }

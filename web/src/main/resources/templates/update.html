@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>자유게시판</title>
+<title>공지사항</title>
 
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 
@@ -19,7 +19,7 @@ body{
 	font-weight: 400;
 	font-style: normal;
 }
-table{	
+table{
 	width: 100%;
 	text-align: center;
 }
@@ -36,6 +36,14 @@ table{
 .title{
 	text-align: left;
 }
+.content{
+	height: 300px;
+	resize: none;
+	
+}
+.submitBtn{
+	width: 100%;
+}
 </style>
 </head>
 <body>
@@ -44,28 +52,21 @@ table{
 	
 	<div class="container">
 		<div class="main">
-			<span th:text="${#lists.size(fb)}"></span>
-			
-			<div th:if="${#lists.size(fb) le 0}">
-				<h1>출력 데이터 없음</h1>
+		
+		<form action="postUpdate" method="post" >
+			<div class="input-group mb-1">
+			  <span class="input-group-text" id="basic-addon1"> 제목 </span>
+			  <input th:value="${detail.mttitle}" name="mttitle" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
 			</div>
-			<div th:unless="${#lists.size(fb) le 0}">
-				<span>이름</span>
-				<span>[[${cateName}]]</span>
-				<div class="table">
-					<div class="row" th:each="row:${fb}">
-						<div class="col-1">[[${row.mtno}]]</div>
-						<div class="col-6" th:onclick="|location.href='@{/detail(no=${row.mtno})}'|">[[${row.mttitle }]]</div>
-						<div class="col-2">[[${row.mname }]]</div>
-						<div class="col-2">[[${row.mtdate }]]</div>
-						<div class="col-1">[[${row.mtread }]]</div>
-					</div>
-				</div>
+			<div class="input-group">
+			  <span class="input-group-text">본문</span>
+			  <textarea name="mtcontent" class="form-control content" aria-label="With textarea">[[${detail.mtcontent}]]</textarea>
 			</div>
-				<th:block th:if="${session.mid ne null}">
-					<button type="button" class="btn btn-primary" th:onclick="|location.href='@{/write(cate=${param.cate})}'|">글쓰기</button>
-					<button type="button" th:with="cate=${fb[0].mtcate}" class="btn btn-primary" th:onclick="|location.href='@{/write(cate=${cate})}'|">글쓰기</button>
-				</th:block>
+			<button type="submit" class="btn btn-primary mt-3 submitBtn">글 작성</button>
+			<input type="hidden" name="mtcate" th:value="${detail.mtcate}">
+			<input type="hidden" name="mtno" th:value="${detail.mtno}">
+		</form>
+		
 		</div>
 	</div>
 </body>

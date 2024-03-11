@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hoshi.web.dao.IndexDAO">
 	
-	<select id="freeBoard" resultType="BoardDTO" parameterType="int">
+	<select id="freeBoard" resultType="Map" parameterType="int">
 		SELECT b.mtno, b.mttitle,  
 		if(DATE_FORMAT(NOW(), '%Y-%m-%d')= DATE_FORMAT(mtdate,'%Y-%m-%d'),
 		DATE_FORMAT(mtdate,'%H:%i'), DATE_FORMAT(mtdate,'%Y-%m-%d')) AS mtdate
@@ -10,7 +10,7 @@
 		WHERE mtcate = ${cate} AND mtdel = 1 ORDER BY mtno DESC LIMIT 0,10 
 	</select>
 	
-	<select id="detail" parameterType="int" resultType="BoardDTO">
+	<select id="detail" parameterType="int" resultType="Map">
 		SELECT b.mtno, b.mttitle, b.mtcontent, b.mtip, b.mtread, b.mtcate, m.mname,
 		if(DATE_FORMAT(NOW(), '%Y-%m-%d')= DATE_FORMAT(mtdate,'%Y-%m-%d'),
 		DATE_FORMAT(mtdate,'%H:%i'), DATE_FORMAT(mtdate,'%Y-%m-%d')) AS mtdate 
@@ -24,6 +24,18 @@
 	
 	<update id="postDel" parameterType="int">
 		UPDATE multiboard SET mtdel = 0 WHERE mtno = #{no}
+	</update>
+	
+	<select id="menu" resultType="Map">
+		SELECT cate, catename FROM menu	
+	</select>
+	
+	<select id="cateName" resultType="String" parameterType="Integer">
+		SELECT catename FROM menu WHERE cate=#{cate}
+	</select>
+	
+	<update id="postUpdate" parameterType="Map">
+		UPDATE multiboard SET mttitle = #{mttitle}, mtcontent=#{mtcontent} WHERE mtno = #{mtno}
 	</update>
 	
 </mapper>

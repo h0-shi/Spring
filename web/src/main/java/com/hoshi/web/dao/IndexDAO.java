@@ -6,18 +6,22 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import com.hoshi.web.dto.BoardDTO;
-
 @Repository
 @Mapper
 public interface IndexDAO {
 	
-	public List<BoardDTO> freeBoard(int cate);
+	public List<Map<String, Object>> freeBoard(int cate);
 
 	public int write(Map<String, Object> map);
 
-	public BoardDTO detail(int no);
+	public Map<String, Object> detail(int no);
 
 	public int postDel(int no);
+
+	public List<Map<String, Object>> menu();
+
+	public int postUpdate(Map<String, Object> map);
+
+	public String cateName(int cate);
 
 }

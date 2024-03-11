@@ -6,5 +6,9 @@
 		SELECT count(*) as count, mname, mid FROM member 
 		WHERE MID = #{id} AND AES_DECRYPT(UNHEX(mpw),'Daiso') = #{pw}
 	</select>
+	
+	<select id="menu" resultType="Map">
+		SELECT cate, catename FROM menu	
+	</select>
 
 </mapper>

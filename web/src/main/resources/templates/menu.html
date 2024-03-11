@@ -51,11 +51,9 @@
                </button>
                <div class="collapse navbar-collapse" id="navbarResponsive">
                    <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
-                       <li class="nav-item"><a class="nav-link me-lg-3" href="/freeboard">게시판</a></li>
-                       <li class="nav-item"><a class="nav-link me-lg-3" href="/notice?cate=2">notice 2</a></li>
-                       <li class="nav-item"><a class="nav-link me-lg-3" href="/notice?cate=3">notice 3</a></li>
-                       <li class="nav-item"><a class="nav-link me-lg-3" href="/notice?cate=4">notice 4</a></li>
-                       <li class="nav-item"><a class="nav-link me-lg-3" href="/notice?cate=5">notice 5</a></li>
+                   	<th:block th:each="m:${menu}">
+                       <li class="nav-item"><a class="nav-link me-lg-3" th:href="|@{/freeboard(cate=${m.cate})}|">[[${m.catename}]]</a></li>
+                   	</th:block>
                        
                        <li class="nav-item"><a class="nav-link me-lg-3" href="/login" th:if="${session.mid eq null}">로그인</a></li>
                        <li class="nav-item"><a class="nav-link me-lg-3" href="/myInfo" th:if="${session.mid ne null}">[[${session.mname}]]님</a></li>

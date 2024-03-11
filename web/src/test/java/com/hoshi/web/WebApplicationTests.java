@@ -27,9 +27,7 @@ class WebApplicationTests {
 		map.put("pw", "0000");
 		
 		map = memberService.login(map);
-		assertEquals("0", map.get("count")+"");
-		int num = 100;
-		assertEquals(10,num);
+		assertEquals("1", map.get("count")+"");
 	}
 
 }

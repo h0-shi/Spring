@@ -1,5 +1,6 @@
 package com.hoshi.web.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,10 @@ public class MemberService {
 	
 	public Map<String, Object> login(Map<String, Object> map) {
 		return memberDAO.login(map);
+	}
+
+	public List<Map<String, Object>> menu() {
+		return memberDAO.menu();
 	}
 
 }

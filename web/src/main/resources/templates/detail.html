@@ -68,6 +68,25 @@ function del(){
 	}
 	
 }
+
+function update(){
+	let no = [[${detail.mtno}]];
+	let cate = [[${detail.mtcate}]];
+	
+	let form = document.createElement('form');
+	form.setAttribute('method','get');
+	form.setAttribute('action','/postUpdate?cate='+cate);
+	
+	let input = document.createElement('input');
+	input.setAttribute('type','hidden');
+	input.setAttribute('name','mtno');
+	input.setAttribute('value',no);
+	
+	form.appendChild(input);
+	
+	document.body.appendChild(form);
+	form.submit();
+}
 </script>
 </head>
 <body id="page-top">
@@ -84,11 +103,10 @@ function del(){
 			<div class="card mb-4" style="min-height: 500px;">
 				<div class="card-body">
 					<div class="h2 title">[[${detail.mttitle }]]</div>
-					<div class="h2 title">[[${detail.mtcate }]]</div>
 					<div class="row p-2 writerInfo">
 						<div class="col align-middle text-start">[[${detail.mname }]] &ensp;
 							<th:block th:if="${session.mname eq detail.mname}" th:with="no=${detail.mtno}" >
-								<span class="cEdit"><a href="javascript:void(0)" onclick="">수정&ensp;</a></span>
+								<span class="cEdit"><a href="javascript:void(0)" onclick="update()">수정&ensp;</a></span>
 								|
 								<span class="cDel"><a href="javascript:void(0)" onclick="del()">&ensp;삭제&ensp;</a></span>
 							</th:block>

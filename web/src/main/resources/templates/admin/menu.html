@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>메뉴임둥</title>
+</head>
+<body>
+	<h1>메뉴임둥</h1>
+	<p>메뉴를 보여줄 수 있다고 합니둥</p>
+	[[${menu}]]
+	
+	<table border=1>
+		<tr>
+			<th>카테고리 번호</th>
+			<th>카테고리 이름</th>
+			<th>비고</th>
+		</tr>
+		<tr th:each="m:${menu}">
+			<td th:text="${m.cate}"></td>
+			<td th:text="${m.catename}"></td>
+			<td th:text="${m.comment}"></td>
+		</tr>		
+	</table>
+	
+	<form action="./menu" method="post">
+		<input type="number" name="cate" placeholder="카테고리 번호">
+		<input type="text" name="catename" placeholder="카테고리 이름">
+		<input type="text" name="comment" placeholder="비고">
+		<button type="submit">저장</button>
+	</form>
+</body>
+</html>
