@@ -1,18 +1,31 @@
 package com.hoshi.web.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.hoshi.web.service.IndexService;
 import com.hoshi.web.util.Util;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -128,6 +141,71 @@ public class IndexController {
 		return "redirect:/login";
 	}
 	
-	
+	@GetMapping("/fileUp")
+	public String fileUp() {
+		return "fileUp";
+	}
+
+	@PostMapping("/fileUp")
+	public String fileUp(@RequestParam("fileUp") MultipartFile file) {
+		System.out.println(file.getName());
+		System.out.println(file.getSize());
+		System.out.println(file.getOriginalFilename());
+
+		// String url = util.req().getServletContext().getRealPath("/upload");
+		File url = new File(util.req().getServletContext().getRealPath("/upload"));
+		url.mkdirs();
+		// UUID를 붙이던지
+		// 년월일시분초
+		// 나노초
+		// 파일 업로드시 UUID+실제 파일명.확장자
+		// 파일 다운로드시 원래 파일명.확장자 ----------
+
+		// UUID
+		UUID uuid = UUID.randomUUID();
+		System.out.println("원본 파일명 : " + file.getOriginalFilename());// 청소.jpg
+		System.out.println("UUID 파일명 : " + uuid.toString() + file.getOriginalFilename());
+														// 14a78e6c-3aa8-4710-a27e-6dee34fc462f청소.jpg
+
+		// 날짜를 뽑아서 파일명 변경하기
+		LocalDateTime ldt = LocalDateTime.now();
+		String ldtFormat = ldt.format(DateTimeFormatter.ofPattern("YYYYMMddHHmmSS"));
+		System.out.println("날짜 파일명 : " + ldtFormat + file.getOriginalFilename());// 20240312100903청소.jpg
+
+		File upFileName = new File(url, ldtFormat + file.getOriginalFilename());
+
+		try {
+			file.transferTo(upFileName);
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+		}
+
+		System.out.println("실제 경로 : " + url);
+
+		return "redirect:/fileUp";
+	}
+
+	//downfile@파일명
+	@ResponseBody
+	@GetMapping("/downfile@{file}") //path variable
+	public void down(@PathVariable("file") String file, HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("경로에 들어온 파일명 : " + file);
+		String url = "/static/img/";
+		//File url = new File(util.req().getServletContext().getRealPath("/upload"));
+		File serverFile = new File(url, file);
+		
+		try {
+			byte[] fileByte  = FileCopyUtils.copyToByteArray(serverFile);
+			response.setContentType("application/octet-stream");
+			response.setHeader("Content-Disposition", "attachment; fileName=\""+ URLEncoder.encode(url+file, "UTF-8")+"\";");
+			response.setHeader("Content-Transfer-Encoding", "binary");
+			response.getOutputStream().write(fileByte);
+			response.getOutputStream().flush();
+			response.getOutputStream().close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

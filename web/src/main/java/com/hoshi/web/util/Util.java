@@ -57,4 +57,9 @@ public class Util {
 		return str;
 	}
 	
+	public String getServiceKey() {
+		String key="ok60q%2B45QPZe3rIbSUr4ZrVOOoEJvX9geb4aaDXRuyF73G0J9r7z10rPFInVouSOApM18Ry%2FwxVMBSDTqVau5w%3D%3D";
+		return key;
+	}
+	
 }
