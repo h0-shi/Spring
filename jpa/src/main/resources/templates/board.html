@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<table border=1>
+		<tr>
+			<th>번호</th>
+			<th>제목</th>
+			<th>작성자</th>
+			<th>날짜</th>
+			<th>조회수</th>
+			<th>좋아요</th>
+		</tr>
+		<tr th:each="row:${list}">
+			<td th:text="${row.jbno}"></td>
+			<td th:onclick="|location.href='@{detail(no=${row.jbno})}'|" >[[${row.jbtitle}]]</td>
+			<td th:text="${row.jpaMember.jmname}"></td>
+			<td th:text="${row.jbdate}"></td>
+			<td th:text="${row.jbread}"></td>
+			<td th:text="${row.jblike}"></td>
+		</tr>
+	</table>
+	<button onclick="location.href='/write'">글쓰기</button>
+	
+	
+</body>
+</html>

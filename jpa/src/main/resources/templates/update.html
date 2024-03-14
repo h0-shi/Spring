@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>글쓰기</title>
+</head>
+<body>
+
+	<form action="/update" method="post" style="width:80%">
+		<input name="title" style="width:80%; margin: 5px" th:value="${detail.jbtitle}">
+		<textarea name="content"  style="width:80%; margin: 5px">[[${detail.jbcontent}]]</textarea>
+		<button type="submit">작성</button>
+		<input name="no" type="hidden" th:value="${detail.jbno}">
+	</form>
+	
+</body>
+</html>
