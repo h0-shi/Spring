@@ -55,3 +55,7 @@ table{
 .catego{
 	width: 20%;
 }
+.search{
+	text-align: right;
+	margin-right: 10px;
+}

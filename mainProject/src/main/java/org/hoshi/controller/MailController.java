@@ -1,7 +1,7 @@
 package org.hoshi.controller;
 
 import org.apache.commons.mail.EmailException;
-import org.hoshi.service.MailService;
+import org.hoshi.service.MailService2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class MailController {
 	
 	@Autowired
-	private MailService mailService;
+	private MailService2 mailService;
 	
 	@GetMapping("/mail")
 	public String mail() {

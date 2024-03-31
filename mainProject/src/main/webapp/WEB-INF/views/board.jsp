@@ -87,7 +87,7 @@ function linkPage(pageNo){
                     <h2 class="section-heading text-uppercase">게시판</h2>
                 </div>
                 <div>
-	                <form action="./board">
+	                <form action="./board" class="search">
 	                	<input type="text" class="catego" placeholder="검색" name="search">
 	                	<button type="submit">검색</button>
 	                </form>

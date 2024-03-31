@@ -17,6 +17,11 @@ public class AdminController {
 	public String index() {
 		return "admin/index";
 	}
+
+	@GetMapping("/index")
+	public String index3() {
+		return "admin/index";
+	}
 	
 	@GetMapping("/join")
 	public String join() {
