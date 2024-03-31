@@ -62,8 +62,8 @@ body{
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">게시판 관리:</h6>
-                        <a class="collapse-item" href="adminBoard">게시글 관리</a>
-                        <a class="collapse-item" href="cards">댓글 관리</a>
+                        <a class="collapse-item" href="./board">게시글 관리</a>
+                        <a class="collapse-item" href="./cards">댓글 관리</a>
                     </div>
                 </div>
             </li>
@@ -148,7 +148,7 @@ body{
         </ul>
         <!-- End of Sidebar -->
         
-    <!-- Bootstrap core JavaScript-->
+            <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

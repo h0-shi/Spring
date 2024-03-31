@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoshi.web.dao.MemberDAO">
+
+	<select id="login" parameterType="Map" resultType="Map">
+		SELECT count(*) as count, mname, mid FROM member 
+		WHERE MID = #{id} AND AES_DECRYPT(UNHEX(mpw),'Daiso') = #{pw}
+	</select>
+	
+	<select id="menu" resultType="Map">
+		SELECT cate, catename FROM menu	
+	</select>
+
+</mapper>

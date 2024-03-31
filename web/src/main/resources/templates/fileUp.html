@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>공지사항</title>
+
+<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+<!-- Google fonts-->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Gowun+Dodum&family=Nanum+Gothic&family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+<style type="text/css">
+body{
+	font-family: "Gowun Dodum", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+}
+table{
+	width: 100%;
+	text-align: center;
+}
+.main{
+	padding-top: 90px;
+}
+.container{
+	margin: 0;
+	padding: 0;
+}
+.table{
+	text-align: center;
+}
+.title{
+	text-align: left;
+}
+.content{
+	height: 300px;
+	resize: none;
+	
+}
+.submitBtn{
+	width: 100%;
+}
+</style>
+</head>
+<body>
+	<th:block th:insert="~{menu.html :: head}">	</th:block>
+	<th:block th:insert="~{menu.html :: menu}">	</th:block>
+	
+	<div class="container">
+		<div class="main">
+		
+		<h1>들어온 카테고리 : [[${param.cate}]]</h1>
+		<form action="/fileUp" method="post" encType="multipart/form-data">
+			<div class="input-group mb-1">
+				<input name="fileUp" type="file" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+				<button type="submit" class="btn btn-primary">업로드</button>
+			</div>
+		</form>
+			<img alt="사진" src="img/error.gif">
+			<br>
+			<button onclick="location.href='downfile@error.gif'">이미지 다운로드</button>
+		</div>
+	</div>
+</body>
+</html>

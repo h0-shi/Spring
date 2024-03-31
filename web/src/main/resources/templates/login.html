@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>공지사항</title>
+
+<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+<!-- Google fonts-->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Gowun+Dodum&family=Nanum+Gothic&family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+<style type="text/css">
+.joinBtn{
+	padding: 0;
+	margin: 5px 0px;
+}
+.pwIn, .idIn{
+	vertical-align: center;
+	border: none;
+	background-color: transparent;
+	color: black;
+}
+input{
+	border: none;
+    color: black;
+}
+input::placeholder {
+    color: black;
+}
+input:focus {
+	outline: none;
+}
+.inputLine{
+	border-bottom: 1px solid black;
+}
+.icon{
+	color: black;
+	text-align: right;
+	font-size: x-large;
+}
+.inputArea{
+	display: flex;
+	align-items: center;
+}
+.submit{
+	height: 32px;
+	width: 250px;
+	border-radius: 2px;
+	background-color: rgba(0,0,0,0.3);
+	color: black;
+	border: 1px solid black;
+}
+.submit:hover {
+	background-color: rgba(0,0,0,0.45);
+}
+.loginimg{
+	margin-top: 50px;
+}
+.links{
+	width: 100%;
+	margin-bottom: 10px;
+	text-align: right;
+	font-size: smaller;
+}
+.links a{
+	text-decoration: none;
+	color: black;
+}
+.links a:hover{
+	color: black;
+}
+</style>
+</head>
+<body id="page-top">
+	<!-- Navigation-->
+	<th:block th:insert="~{menu.html :: head}">	</th:block>
+	<th:block th:insert="~{menu.html :: menu}">	</th:block>
+      <!-- login-->
+      <section class="page-section" id="login">
+          <div class="d-flex justify-content-center">
+             <div class="text-center">
+             		<form action="./login" method="post">
+				<img class="loginimg" alt="login" src="./img/login.png" width="250px;">
+			<div class="mb-3 row inputLine">
+				<label for="id" class="col-sm-3 col-form-label icon"><i class="xi-user-o"></i></label>
+				<div class="col-sm-8 inputArea">
+					<input type="text" class="idIn" id="id" placeholder="아이디를 입력하세요" name="id">
+				</div>
+			</div>
+			<div class="mb-3 row inputLine">
+				<label for="pw" class="col-sm-3 col-form-label icon"><i class="xi-lock-o"></i></label>
+				<div class="col-sm-8 inputArea">
+					<input type="password" class="pwIn" id="pw" placeholder="암호를 입력하세요" name="pw">
+				</div>
+			</div>
+			<div class="mb-3 row">
+				<div>
+					<div class="links">
+						<a href="javascript:void(0)" onclick="join()">회원가입</a>
+					</div>
+				</div>
+				<div class="">
+				<button type="submit" id="login" class="submit">login</button>
+				</div>
+			</div>
+			</form>
+          	</div>
+          </div>
+      </section>
+</body>
+</html>

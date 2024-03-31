@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>디테일</title>
+</head>
+<body>
+	<h1>모아보기</h1>
+	[[${detail.jbno}]]
+	<br>
+	[[${detail.jbtitle}]]
+ 	<button th:onclick="|location.href='@{update(no=${detail.jbno})}'|">수정</button>	<button th:onclick="|location.href='@{postDel(no=${detail.jbno})}'|">삭제</button>
+	<br>
+	[[${detail.jbcontent}]]
+	<br>
+	[[${detail.jbdate}]]
+	<br>
+	[[${detail.jbread}]]
+	<br>
+	<button onclick="location.href='/board'">게시판으로</button>
+	
+</body>
+</html>

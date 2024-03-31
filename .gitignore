@@ -4,3 +4,4 @@ db-Context.xml
 target/
 mainProject/src/main/webapp/resources/img
 MailService.*
+application.*

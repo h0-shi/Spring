@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>공지사항</title>
+
+<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+<!-- Google fonts-->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Gowun+Dodum&family=Nanum+Gothic&family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+<style type="text/css">
+body{
+	font-family: "Gowun Dodum", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+}
+table{
+	width: 100%;
+	text-align: center;
+}
+.main{
+	padding-top: 90px;
+}
+.container{
+	margin: 0;
+	padding: 0;
+}
+.table{
+	text-align: center;
+}
+.title{
+	text-align: left;
+}
+.content{
+	height: 300px;
+	resize: none;
+	
+}
+.submitBtn{
+	width: 100%;
+}
+</style>
+</head>
+<body>
+	<th:block th:insert="~{menu.html :: head}">	</th:block>
+	<th:block th:insert="~{menu.html :: menu}">	</th:block>
+	
+	<div class="container">
+		<div class="main">
+		
+		<h1>들어온 카테고리 : [[${param.cate}]]</h1>
+		<form action="/write" method="post">
+			<div class="input-group mb-1">
+			  <span class="input-group-text" id="basic-addon1"> 제목 </span>
+			  <input name="title" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+			</div>
+			<div class="input-group">
+			  <span class="input-group-text">본문</span>
+			  <textarea name="content" class="form-control content" aria-label="With textarea"></textarea>
+			</div>
+			<button type="submit" class="btn btn-primary mt-3 submitBtn">글 작성</button>
+			<input type="hidden" name="mtcate" th:value="${param.cate}">
+		</form>
+		
+		</div>
+	</div>
+</body>
+</html>

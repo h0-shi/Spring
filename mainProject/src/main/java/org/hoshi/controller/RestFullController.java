@@ -1,9 +1,12 @@
 package org.hoshi.controller;
 
-import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
 
 import org.apache.ibatis.annotations.Param;
 import org.hoshi.dto.BoardDTO;
+import org.hoshi.service.AdminService;
 import org.hoshi.service.BoardService;
 import org.hoshi.service.LoginService;
 import org.hoshi.service.RestService;
@@ -12,7 +15,9 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
@@ -24,6 +29,9 @@ public class RestFullController {
 	@Autowired RestService restService;
 	@Autowired LoginService loginService;
 	@Autowired Util util;
+	
+	@Resource(name="adminService")
+	private AdminService adminService; 
 	
 	@PostMapping("/restDetail")
 	public BoardDTO restDetail(@Param("no") int no) {
@@ -77,6 +85,18 @@ public class RestFullController {
 		jsonList.put("pageNo", pageNo);
 		
 		return jsonList.toString();
+	}
+	
+	@ResponseBody
+	@PostMapping("admin/delStatus")
+	public int delStatus(BoardDTO boardDTO) {
+		int status = util.str2Int(boardDTO.getBoard_del()+"");
+		if(status == 1) {
+			boardDTO.setBoard_del(0+"");
+		} else {
+			boardDTO.setBoard_del(1+"");
+		}
+		return adminService.delStatus(boardDTO);
 	}
 	
 }

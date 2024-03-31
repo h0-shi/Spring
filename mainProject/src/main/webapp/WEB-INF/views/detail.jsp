@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -254,7 +255,10 @@ body{
 							<img alt="del" src="./img/delete.png" class="del" title="글 삭제" onclick="deletePost()">
 						</c:if>
 						</div>
-						<div class="col align-middle text-end detailDate">${detail.board_date }</div>
+						<div class="col align-middle text-end detailDate">
+						<fmt:parseDate var="dateString" value="${detail.board_date }" pattern="yyyy-MM-dd HH:mm:ss" />
+						<fmt:formatDate  value="${dateString }" pattern="YYYY-MM-dd HH:mm" />
+						</div>
 					</div>
 					<div class="mt-4 h-auto content">${detail.board_content }</div>
 				</div>

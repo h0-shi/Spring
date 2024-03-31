@@ -1,0 +1,26 @@
+@charset "UTF-8";
+.table{
+	text-align: center;	
+}
+.w1{
+	width: 10%;
+}
+.w2{
+	width: 20%;	
+}
+.title{
+	text-align: left;
+	width: 30%;
+}
+.paging{
+	width: 100%;
+	text-align: center;
+}
+.ip a{
+	text-decoration: none;
+	color : grey;
+}
+.ip a :hover{
+	text-decoration: none;
+	color : black;
+}
